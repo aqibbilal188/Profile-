@@ -178,63 +178,65 @@ const Hero = () => {
         )}
       </motion.div>
       
-      <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        style={{ y: y2 }}
-      >
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          className="absolute top-20 right-20 w-32 h-32 border-2 border-primary/20 rounded-lg"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-32 left-16 w-24 h-24 border-2 border-secondary/20 rounded-full"
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="absolute top-1/3 right-1/4 w-16 h-16 bg-primary/10 rounded-lg"
-          animate={{
-            y: [0, -15, 0],
-            rotate: [45, 50, 45],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 left-1/3 w-20 h-20 border-2 border-secondary/15 rounded-lg"
-          animate={{
-            y: [0, 15, 0],
-            rotate: [-45, -50, -45],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        />
-      </motion.div>
+      {!isMobile && (
+        <motion.div 
+          className="absolute inset-0 overflow-hidden"
+          style={{ y: y2 }}
+        >
+          {/* Floating Geometric Shapes - Disabled on mobile */}
+          <motion.div
+            className="absolute top-20 right-20 w-32 h-32 border-2 border-primary/20 rounded-lg"
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-32 left-16 w-24 h-24 border-2 border-secondary/20 rounded-full"
+            animate={{
+              y: [0, 20, 0],
+              rotate: [0, -5, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/4 w-16 h-16 bg-primary/10 rounded-lg"
+            animate={{
+              y: [0, -15, 0],
+              rotate: [45, 50, 45],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 left-1/3 w-20 h-20 border-2 border-secondary/15 rounded-lg"
+            animate={{
+              y: [0, 15, 0],
+              rotate: [-45, -50, -45],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+          />
+        </motion.div>
+      )}
       
       {/* Overlay for better text readability */}
       <motion.div 
