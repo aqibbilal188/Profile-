@@ -8,6 +8,7 @@ import Projects from "@/app/components/Projects";
 import Reviews from "@/app/components/Reviews";
 import Contact from "@/app/components/Contact";
 import Navbar from "@/app/components/Navbar";
+import Chatbot from "@/app/components/Chatbot";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Projects />
       <Reviews />
       <Contact />
+      <Chatbot />
     </motion.main>
   );
 }

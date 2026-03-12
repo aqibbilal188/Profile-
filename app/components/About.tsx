@@ -8,7 +8,7 @@ const About = () => {
     { icon: Briefcase, value: "20+", label: "Projects Delivered" },
     { icon: Star, value: "5.0", label: "Fiverr Rating" },
     { icon: Rocket, value: "2+", label: "Years Experience" },
-    { icon: Code, value: "9", label: "5-Star Reviews" },
+    { icon: Code, value: "5★", label: "Fiverr Rating" },
   ];
 
   const containerVariants = {
@@ -110,13 +110,13 @@ const About = () => {
             className="space-y-6 lg:order-1"
           >
             <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
-              Hello! I'm <span className="text-primary font-semibold">Mohammed Bilal</span>, an
+              Hello! I&apos;m <span className="text-primary font-semibold">Mohammed Bilal</span>, an
               AI Developer with a passion for creating innovative solutions that combine the power
               of artificial intelligence with modern web and mobile technologies.
             </p>
             <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
               With over <span className="text-primary font-semibold">2 years</span> of freelancing
-              experience, I've successfully delivered <span className="text-primary font-semibold">20+ real-world projects</span> for
+              experience, I&apos;ve successfully delivered <span className="text-primary font-semibold">20+ real-world projects</span> for
               clients worldwide. My expertise spans across web development, mobile applications,
               AI agents, WhatsApp chatbots, and AI automation systems.
             </p>
@@ -128,7 +128,7 @@ const About = () => {
               precision, and a deep understanding of modern development practices.
             </p>
             <p className="text-lg lg:text-xl text-foreground/80 leading-relaxed">
-              Currently based in <span className="text-primary font-semibold">Saudi Arabia</span>, I'm
+              Currently based in <span className="text-primary font-semibold">Saudi Arabia</span>, I&apos;m
               actively seeking full-time opportunities to bring my expertise to innovative teams
               and challenging projects.
             </p>

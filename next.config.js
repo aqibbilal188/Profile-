@@ -7,12 +7,7 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-    unoptimized: false,
   },
-  experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
-  },
-  output: 'standalone',
 };
 
 module.exports = nextConfig;

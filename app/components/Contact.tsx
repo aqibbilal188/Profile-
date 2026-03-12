@@ -59,7 +59,7 @@ const Contact = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4" />
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Looking for a full-time opportunity or have a project in mind? Let's connect!
+            Looking for a full-time opportunity or have a project in mind? Let&apos;s connect!
           </p>
         </motion.div>
 
@@ -74,12 +74,12 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-foreground">
-                Let's Work Together
+                Let&apos;s Work Together
               </h3>
               <p className="text-foreground/70 leading-relaxed mb-8">
-                I'm currently based in Saudi Arabia and actively seeking full-time opportunities.
+                I&apos;m currently based in Saudi Arabia and actively seeking full-time opportunities.
                 Whether you need a developer for your team or have a project that requires AI expertise,
-                I'd love to hear from you.
+                I&apos;d love to hear from you.
               </p>
             </div>
 
@@ -115,7 +115,7 @@ const Contact = () => {
               <h4 className="font-semibold text-foreground mb-4">Connect With Me</h4>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://www.fiverr.com/your-profile"
+                  href="https://www.fiverr.com/s/Zmr7zxQ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors"
@@ -124,7 +124,16 @@ const Contact = () => {
                   Fiverr Profile
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/your-profile"
+                  href="https://www.fiverr.com/s/Aya9pLq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View My Gigs
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/mohammed-bilal-4a0282270/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors"
@@ -133,7 +142,7 @@ const Contact = () => {
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://github.com/your-profile"
+                  href="https://github.com/aqibbilal188"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors"

@@ -98,7 +98,7 @@ const Hero = () => {
       transition: {
         delay: i * 0.05,
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   };
@@ -106,7 +106,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
       {/* Particle Background */}
       <ParticleBackground />
@@ -226,7 +226,7 @@ const Hero = () => {
         style={{ opacity }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 lg:pt-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -274,6 +274,20 @@ const Hero = () => {
 
           {/* Text Content */}
           <div className="text-center lg:text-left flex-1">
+            {/* 5-Star Fiverr Badge */}
+            <motion.div
+              variants={itemVariants}
+              className="mb-4 flex justify-center lg:justify-start"
+            >
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border border-primary/30 rounded-full backdrop-blur-sm"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Star className="w-5 h-5 text-primary fill-primary" />
+                <span className="text-sm font-semibold text-foreground">5-Star Rated on Fiverr</span>
+              </motion.div>
+            </motion.div>
+
             <motion.div
               variants={itemVariants}
               className="mb-6"
@@ -420,32 +434,31 @@ const Hero = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.5 }}
                 >
-                    <p className="text-base lg:text-lg text-foreground/90 mb-4 leading-relaxed italic">
-                      "{featuredReviews[currentReviewIndex].text}"
-                    </p>
-                    <div className="flex items-center justify-between flex-wrap gap-4">
-                      <div>
-                        <div className="font-semibold text-foreground">
-                          {featuredReviews[currentReviewIndex].client}
-                        </div>
-                        <div className="text-sm text-foreground/60">
-                          {featuredReviews[currentReviewIndex].country}
-                        </div>
+                  <p className="text-base lg:text-lg text-foreground/90 mb-4 leading-relaxed italic">
+                    &ldquo;{featuredReviews[currentReviewIndex].text}&rdquo;
+                  </p>
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                      <div className="font-semibold text-foreground">
+                        {featuredReviews[currentReviewIndex].client}
                       </div>
-                      <div className="flex gap-1">
-                        {featuredReviews.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setCurrentReviewIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-all ${
-                              index === currentReviewIndex
-                                ? "bg-primary w-6"
-                                : "bg-foreground/20 hover:bg-foreground/40"
-                            }`}
-                            aria-label={`Go to review ${index + 1}`}
-                          />
-                        ))}
+                      <div className="text-sm text-foreground/60">
+                        {featuredReviews[currentReviewIndex].country}
                       </div>
+                    </div>
+                    <div className="flex gap-1">
+                      {featuredReviews.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentReviewIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            index === currentReviewIndex
+                              ? "bg-primary w-6"
+                              : "bg-foreground/20 hover:bg-foreground/40"
+                          }`}
+                          aria-label={`Go to review ${index + 1}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </motion.div>

@@ -149,7 +149,7 @@ const Reviews = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4" />
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            9 Reviews • 5.0 Rating • All 5 Stars
+            5-Star Rated • All 5 Stars
           </p>
         </motion.div>
 
@@ -182,7 +182,7 @@ const Reviews = () => {
 
                 {/* Review Text */}
                 <p className="text-lg lg:text-xl text-foreground/90 mb-8 leading-relaxed italic">
-                  "{currentReview.text}"
+                  &ldquo;{currentReview.text}&rdquo;
                 </p>
 
                 {/* Client Info */}
@@ -267,7 +267,7 @@ const Reviews = () => {
               <div className="text-left">
                 <div className="font-semibold text-lg">Fiverr Level 1 Seller</div>
                 <div className="text-sm text-foreground/70">
-                  9 Reviews • 5.0 Rating • All 5 Stars
+                  5-Star Rated • All 5 Stars
                 </div>
               </div>
             </div>

@@ -1,10 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Globe, ArrowUpRight, Code2 } from "lucide-react";
+import { ExternalLink, Globe, ArrowUpRight, Code2, Play, X } from "lucide-react";
+import Image from "next/image";
 
 const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
+  const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
+
+  // Cleanup videos when component unmounts
+  useEffect(() => {
+    return () => {
+      // Pause all videos on cleanup
+      const videos = videoRefs.current;
+      Object.values(videos).forEach(video => {
+        if (video) {
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    };
+  }, []);
 
   // Function to check if video exists
   const checkVideoExists = (videoPath: string): boolean => {
@@ -12,27 +30,8 @@ const Projects = () => {
     return true; // We'll let the browser handle 404s
   };
 
+  // Reorder projects: first 3 should be video projects, then others
   const projects = [
-    {
-      id: 1,
-      name: "Fortva – All-in-One Document Management & Contract Lifecycle Platform",
-      description: "Developed a comprehensive document management and contract lifecycle platform with military-grade security, AI-powered intelligence, zero-knowledge encryption, and workflow automation. Features unlimited users, compliance readiness, and seamless document organization.",
-      link: "https://fortva.com/",
-      technologies: ["AI", "AWS", "Document Management", "Contract Lifecycle", "Security", "Workflow Automation", "Web Development"],
-      hasVideo: false,
-      videoPath: null,
-      hasImage: true,
-      imagePath: "/images/fortva-screenshot.jpg",
-    },
-    {
-      id: 2,
-      name: "GoodPappa – E-commerce Platform",
-      description: "Large e-commerce platform with AI chatbot integration for enhanced customer experience.",
-      link: "https://goodpappa.com/",
-      technologies: ["E-commerce", "AI Chatbot", "Web Development"],
-      hasVideo: false,
-      videoPath: null,
-    },
     {
       id: 3,
       name: "Crypto AI Trading Bot",
@@ -56,6 +55,28 @@ const Projects = () => {
       technologies: ["AI", "Voice", "Automation", "NLP"],
       hasVideo: true,
       videoPath: "/videos/ai-calling-agent.mp4",
+    },
+    {
+      id: 1,
+      name: "Fortva – All-in-One Document Management & Contract Lifecycle Platform",
+      description: "Developed a comprehensive document management and contract lifecycle platform with military-grade security, AI-powered intelligence, zero-knowledge encryption, and workflow automation. Features unlimited users, compliance readiness, and seamless document organization.",
+      link: "https://fortva.com/",
+      technologies: ["AI", "AWS", "Document Management", "Contract Lifecycle", "Security", "Workflow Automation", "Web Development"],
+      hasVideo: false,
+      videoPath: null,
+      hasImage: true,
+      imagePath: "/images/fortva.png",
+    },
+    {
+      id: 2,
+      name: "GoodPappa – E-commerce Platform",
+      description: "Large e-commerce platform with AI chatbot integration for enhanced customer experience.",
+      link: "https://goodpappa.com/",
+      technologies: ["E-commerce", "AI Chatbot", "Web Development"],
+      hasVideo: false,
+      videoPath: null,
+      hasImage: true,
+      imagePath: "/images/goodpappa.png",
     },
     {
       id: 7,
@@ -155,13 +176,13 @@ const Projects = () => {
         </motion.div>
 
         <motion.div
+          key={showAll ? 'all-projects' : 'limited-projects'}
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"
         >
-          {projects.map((project) => (
+          {(showAll ? projects : projects.slice(0, 3)).map((project) => (
             <motion.div
               key={project.id}
               variants={itemVariants}
@@ -172,39 +193,111 @@ const Projects = () => {
             >
               {/* Video Player - Full width at top */}
               {project.hasVideo && project.videoPath && (
-                <div className="relative w-full aspect-video bg-black overflow-hidden">
-                  <video
-                    src={project.videoPath}
-                    controls
-                    className="w-full h-full object-cover"
-                    preload="metadata"
-                    playsInline
-                    onError={(e) => {
-                      console.error("Video failed to load:", project.videoPath);
-                      const target = e.target as HTMLVideoElement;
-                      target.style.display = 'none';
-                    }}
-                  >
-                    Your browser does not support the video tag.
-                  </video>
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-primary/90 backdrop-blur-sm text-black text-xs font-bold rounded-full">
-                    Demo
-                  </div>
+                <div className="relative w-full aspect-video bg-black overflow-hidden group/video">
+                  {playingVideo !== project.id ? (
+                    <>
+                      {/* Video thumbnail/preview */}
+                      <video
+                        src={project.videoPath}
+                        className="w-full h-full object-cover"
+                        preload="metadata"
+                        muted
+                        playsInline
+                        onLoadedMetadata={(e) => {
+                          // Set first frame as thumbnail
+                          const video = e.target as HTMLVideoElement;
+                          video.currentTime = 0.1;
+                        }}
+                      />
+                      {/* Thumbnail/Preview with Play Button */}
+                      <div 
+                        className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[1px] group-hover/video:bg-black/30 transition-all cursor-pointer z-10"
+                        onClick={() => {
+                          setPlayingVideo(project.id);
+                        }}
+                      >
+                        <motion.button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setPlayingVideo(project.id);
+                          }}
+                          className="w-24 h-24 rounded-full bg-primary/95 backdrop-blur-md flex items-center justify-center shadow-2xl hover:bg-primary transition-all group/play border-4 border-white/20 z-20"
+                          whileHover={{ scale: 1.15 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <Play className="w-12 h-12 text-white ml-1 fill-white" />
+                        </motion.button>
+                      </div>
+                      <div className="absolute top-4 right-4 px-4 py-2 bg-primary/90 backdrop-blur-sm text-black text-sm font-bold rounded-full flex items-center gap-2 z-30 pointer-events-none">
+                        <Play className="w-4 h-4" />
+                        Watch Demo
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Full Quality Video Player */}
+                      <video
+                        key={`video-${project.id}-playing`}
+                        ref={(el) => {
+                          if (el) {
+                            videoRefs.current[project.id] = el;
+                            // Force play when video element is ready
+                            el.play().catch(err => {
+                              console.error("Video play error:", err);
+                            });
+                          }
+                        }}
+                        src={project.videoPath}
+                        controls
+                        autoPlay
+                        className="w-full h-full object-contain bg-black"
+                        playsInline
+                        preload="auto"
+                        onLoadedData={(e) => {
+                          // Ensure video plays when loaded
+                          const video = e.target as HTMLVideoElement;
+                          video.play().catch(err => {
+                            console.error("Video play error:", err);
+                          });
+                        }}
+                        onError={(e) => {
+                          console.error("Video failed to load:", project.videoPath);
+                          setPlayingVideo(null);
+                        }}
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                      <motion.button
+                        onClick={() => {
+                          // Pause video when closing
+                          const video = videoRefs.current[project.id];
+                          if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                          }
+                          setPlayingVideo(null);
+                        }}
+                        className="absolute top-4 right-4 px-4 py-2 bg-primary/90 backdrop-blur-sm text-black text-sm font-bold rounded-full hover:bg-primary transition-all flex items-center gap-2 z-10"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <X className="w-4 h-4" />
+                        Close
+                      </motion.button>
+                    </>
+                  )}
                 </div>
               )}
 
               {/* Project Image - Full width at top */}
               {!project.hasVideo && project.hasImage && project.imagePath && (
-                <div className="relative w-full aspect-video bg-black overflow-hidden">
-                  <img
+                <div className="relative w-full aspect-video bg-gradient-to-br from-foreground/5 to-foreground/10 overflow-hidden">
+                  <Image
                     src={project.imagePath}
                     alt={project.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      console.error("Image failed to load:", project.imagePath);
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 right-4 px-3 py-1 bg-primary/90 backdrop-blur-sm text-black text-xs font-bold rounded-full">
                     Live Site
@@ -285,6 +378,49 @@ const Projects = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Show More Button */}
+        {!showAll && projects.length > 3 && (
+          <div className="flex justify-center mt-12 w-full py-8">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setShowAll(true);
+              }}
+              className="px-10 py-5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold text-lg rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group cursor-pointer z-50 relative hover:scale-105 active:scale-95"
+              type="button"
+            >
+              <span className="font-bold">Show More Projects ({projects.length - 3} more)</span>
+              <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </button>
+          </div>
+        )}
+
+        {/* Show Less Button */}
+        {showAll && projects.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center mt-12"
+          >
+            <motion.button
+              onClick={() => {
+                setShowAll(false);
+                // Scroll to projects section smoothly
+                setTimeout(() => {
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+              }}
+              className="px-8 py-4 bg-foreground/5 text-foreground font-semibold rounded-xl border border-foreground/10 hover:border-primary/30 transition-all duration-300 flex items-center gap-2 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>Show Less</span>
+            </motion.button>
+          </motion.div>
+        )}
       </div>
 
     </section>
