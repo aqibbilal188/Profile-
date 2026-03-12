@@ -16,13 +16,34 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // You can integrate with a form service like Formspree here
-    // For now, we'll just show a success message
-    setTimeout(() => {
-      alert("Thank you for your message! I'll get back to you soon.");
-      setFormData({ name: "", email: "", message: "" });
+    try {
+      // Send form data to our API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Thank you for your message! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert(data.error || "Something went wrong. Please try again or email me directly at aqibbilal188@gmail.com");
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert("Something went wrong. Please email me directly at aqibbilal188@gmail.com");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (
