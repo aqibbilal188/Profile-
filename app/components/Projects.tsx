@@ -180,7 +180,7 @@ const Projects = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8"
         >
           {(showAll ? projects : projects.slice(0, 3)).map((project) => (
             <motion.div

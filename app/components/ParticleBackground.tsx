@@ -1,11 +1,24 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    // Disable particles on mobile for better performance
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -29,8 +42,8 @@ const ParticleBackground = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Create particles
-    const particleCount = 50;
+    // Create particles - reduced count for better performance
+    const particleCount = 30;
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -90,7 +103,10 @@ const ParticleBackground = () => {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render canvas on mobile
+  if (isMobile) return null;
 
   return (
     <canvas
