@@ -166,7 +166,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
             My <span className="text-primary">Projects</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4" />
@@ -388,7 +388,7 @@ const Projects = () => {
                 e.stopPropagation();
                 setShowAll(true);
               }}
-              className="px-10 py-5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold text-lg rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-3 group cursor-pointer z-50 relative hover:scale-105 active:scale-95"
+              className="px-6 py-4 sm:px-10 sm:py-5 bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold text-base sm:text-lg rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-2 sm:gap-3 group cursor-pointer z-50 relative hover:scale-105 active:scale-95"
               type="button"
             >
               <span className="font-bold">Show More Projects ({projects.length - 3} more)</span>

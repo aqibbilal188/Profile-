@@ -61,8 +61,8 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <motion.a
             href="#hero"
@@ -80,7 +80,7 @@ const Navbar = () => {
                 <Code className="w-5 h-5 text-white" />
               </div>
             </div>
-            <span className="text-xl font-display font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="text-base sm:text-xl font-display font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Mohammed Bilal
             </span>
           </motion.a>

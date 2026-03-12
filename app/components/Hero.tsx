@@ -106,7 +106,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20"
     >
       {/* Particle Background */}
       <ParticleBackground />
@@ -226,7 +226,7 @@ const Hero = () => {
         style={{ opacity }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 lg:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 sm:pt-16 lg:pt-24">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -239,7 +239,7 @@ const Hero = () => {
             className="relative"
           >
             <motion.div
-              className="relative w-48 h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl"
+              className="relative w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl"
               whileHover={{ scale: 1.05, rotate: 5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -292,7 +292,7 @@ const Hero = () => {
               variants={itemVariants}
               className="mb-6"
             >
-              <h1 className="text-5xl lg:text-8xl font-display font-extrabold mb-4 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-8xl font-display font-extrabold mb-4 tracking-tight">
                 <span className="text-foreground inline-block">
                   {"Mohammed Bilal".split("").map((letter, i) => (
                     <motion.span
@@ -314,7 +314,7 @@ const Hero = () => {
             variants={itemVariants}
             className="mb-8"
           >
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xl lg:text-3xl font-semibold text-foreground/80">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-lg sm:text-xl lg:text-3xl font-semibold text-foreground/80">
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

@@ -97,7 +97,7 @@ const Chatbot = () => {
       {/* Chatbot Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-primary via-secondary to-accent text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-primary via-secondary to-accent text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         aria-label="Open chatbot"
@@ -116,7 +116,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-24 right-6 z-50 w-96 h-[600px] bg-background border border-primary/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-sm"
+            className="fixed bottom-24 right-2 sm:right-6 z-50 w-[calc(100vw-1rem)] sm:w-96 max-w-sm h-[600px] bg-background border border-primary/20 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-sm"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-primary via-secondary to-accent p-4 flex items-center justify-between">

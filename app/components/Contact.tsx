@@ -54,7 +54,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
             Get In <span className="text-primary">Touch</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4" />
@@ -113,7 +113,7 @@ const Contact = () => {
             {/* Social Links */}
             <div>
               <h4 className="font-semibold text-foreground mb-4">Connect With Me</h4>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                 <a
                   href="https://www.fiverr.com/s/Zmr7zxQ"
                   target="_blank"

@@ -114,7 +114,7 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
             My <span className="text-primary">Skills</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4" />
