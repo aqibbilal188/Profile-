@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Using Web3Forms - Free email service
+    // Using Web3Forms - Free email service for contact form
     const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY;
 
     if (!web3formsAccessKey) {
