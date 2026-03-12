@@ -12,23 +12,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Using Web3Forms - Free email service
-    // Get your access key from: https://web3forms.com
-    // For now, using a placeholder - you need to get your own key
-    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE';
+    const web3formsAccessKey = process.env.WEB3FORMS_ACCESS_KEY;
 
-    if (web3formsAccessKey === 'YOUR_ACCESS_KEY_HERE') {
-      // Fallback: Just log for now until access key is set
-      console.log('Contact Form Submission (Email not sent - need access key):', {
-        name,
-        email,
-        message,
-        timestamp: new Date().toISOString(),
-      });
-      
-      return NextResponse.json({ 
-        success: true,
-        message: 'Thank you for your message! I\'ll get back to you soon.' 
-      });
+    if (!web3formsAccessKey) {
+      console.error('WEB3FORMS_ACCESS_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email service is not configured. Please contact me directly at aqibbilal188@gmail.com' },
+        { status: 500 }
+      );
     }
 
     // Send email via Web3Forms
