@@ -87,7 +87,7 @@ const Projects = () => {
       hasVideo: false,
       videoPath: null,
       hasImage: true,
-      imagePath: "/images/orange-county-rehab-screenshot.jpg",
+      imagePath: "/images/orange-county-rehab.png",
     },
     {
       id: 8,
