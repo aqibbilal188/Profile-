@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Bilal — AI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: #09090b;
+  color: #f4f4f5;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 64px;
+  background: rgba(9,9,11,.8); backdrop-filter: blur(20px) saturate(1.5);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: background .3s;
+}
+.logo { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: #e8ff47; letter-spacing: .5px; }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-links a { color: rgba(255,255,255,.38); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: .2px; transition: color .2s; }
+.nav-links a:hover { color: #f4f4f5; }
+.avail { display: flex; align-items: center; gap: 7px; font-size: 11px; color: rgba(255,255,255,.32); font-family: 'JetBrains Mono', monospace; letter-spacing: .5px; }
+.avail-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes spinR { from{transform:rotate(0deg)} to{transform:rotate(-360deg)} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.fade-up { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+.fd1 { animation-delay: .05s } .fd2 { animation-delay: .15s } .fd3 { animation-delay: .25s } .fd4 { animation-delay: .35s } .fd5 { animation-delay: .45s }
+
+/* ── DISPLAY FONT ── */
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+
+/* ── SECTION LABELS ── */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: 4px;
+  color: #e8ff47; text-transform: uppercase;
+  margin-bottom: 1rem; opacity: .85;
+}
+
+/* ── BODY TEXT ── */
+p, li { font-weight: 400; line-height: 1.8; }
+
+/* ── CARD ── */
+.card {
+  background: #111114; border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px; transition: border-color .25s, transform .25s, box-shadow .25s;
+}
+.card:hover { border-color: rgba(255,255,255,.15); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+
+/* ── CHIP ── */
+.chip {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; padding: 3px 9px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 5px; color: rgba(255,255,255,.45); letter-spacing: .3px;
+}
+
+/* ── BTN ── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #e8ff47; color: #09090b; padding: 13px 28px;
+  border-radius: 10px; font-size: 14px; font-weight: 700;
+  text-decoration: none; transition: opacity .2s, transform .15s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: rgba(255,255,255,.65); padding: 13px 28px;
+  border-radius: 10px; font-size: 14px; font-weight: 500;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.12);
+  transition: border-color .2s, color .2s, transform .15s; cursor: pointer;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.3); color: #fff; transform: translateY(-1px); }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #e8ff47; border-radius: 2px; }
+
+/* VIDEO MODAL */
+#vmodal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.88); z-index: 999;
+  align-items: center; justify-content: center; backdrop-filter: blur(12px);
+}
+#vmodal.open { display: flex; animation: fadeUp .2s ease; }
+#vmodal video { max-width: 88vw; max-height: 80vh; border-radius: 12px; outline: 1px solid rgba(255,255,255,.08); }
+#vcl {
+  position: absolute; top: 22px; right: 22px;
+  width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7);
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s;
+}
+#vcl:hover { background: rgba(255,255,255,.16); }
+
+/* ── MOBILE ── */
+@media (max-width: 860px) {
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .stats-grid > div:nth-child(2) { border-right: none !important; }
+  .stats-grid > div:nth-child(1), .stats-grid > div:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.06) !important; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+}
+@media (max-width: 720px) {
+  nav { padding: 0 1.25rem !important; }
+  .nav-links { display: none !important; }
+  .logo span:last-child { font-size: 14px !important; }
+  .avail { font-size: 10px !important; }
+  section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  #about, #skills, #projects, #reviews, #contact { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
+  h2[class*="font-display"], .font-display { letter-spacing: -1px !important; }
+  #about h2, #skills h2, #projects h2, #reviews h2, #contact h2 { font-size: 2rem !important; }
+  .btn-primary, .btn-ghost { padding: 12px 22px !important; font-size: 13px !important; }
+  .stats-grid > div { padding: 1.5rem .5rem !important; }
+  .stats-grid > div > div:first-child { font-size: 1.7rem !important; }
+}
+@media (max-width: 480px) {
+  .logo span:last-child { display: none !important; }
+  .cta-row { flex-direction: column !important; }
+  .cta-row > a { width: 100% !important; justify-content: center !important; }
+  #vmodal video { max-width: 94vw !important; }
+}
+</style>
+</head>
+<body>
+
+
+<div id="vmodal">
+  <div id="vcl" onclick="closeV()">✕</div>
+  <video id="vp" controls playsinline></video>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo" style="text-decoration:none;display:flex;align-items:center;gap:9px;">
+    <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:#e8ff47;color:#09090b;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.5px;">MB</span>
+    <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:#f4f4f5;letter-spacing:-.2px;">Mohammed Bilal</span>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="avail"><div class="avail-dot"></div>Open to work</div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; padding-top:64px;">
+  <canvas id="bg3d" style="position:absolute;inset:0;width:100%;height:100%;opacity:.55;"></canvas>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(232,255,71,.04) 0%, transparent 70%);pointer-events:none;"></div>
+
+  <div style="position:relative;z-index:5;max-width:900px;padding:5rem 2rem 6rem;text-align:center;">
+
+    <!-- Avatar -->
+    <div style="display:inline-block;position:relative;margin-bottom:2.5rem;" class="fade-up fd1">
+      <div style="position:absolute;inset:-18px;border-radius:50%;border:1px solid rgba(232,255,71,.12);animation:spin 20s linear infinite;"></div>
+      <div style="position:absolute;inset:-10px;border-radius:50%;border:1px dashed rgba(255,255,255,.06);animation:spinR 15s linear infinite;"></div>
+      <div style="width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#e8ff47 0%,#a3e635 100%);padding:2.5px;">
+        <img src="profile.jpg" alt="Mohammed Bilal"
+          style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block;"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;background:#1a1a1e;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#e8ff47;\'>MB</div>'">
+      </div>
+      <!-- status dot -->
+      <div style="position:absolute;bottom:4px;right:4px;width:16px;height:16px;background:#22c55e;border-radius:50%;border:2.5px solid #09090b;"></div>
+    </div>
+
+    <!-- Tag -->
+    <div class="fade-up fd2" style="margin-bottom:1.5rem;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:5px 14px;border-radius:20px;letter-spacing:1.5px;">
+        5.0 ★ · 10+ REVIEWS · SAUDI ARABIA 🇸🇦
+      </span>
+    </div>
+
+    <!-- Name -->
+    <h1 class="fade-up fd3 font-display" style="font-size:clamp(3.8rem,10vw,7.5rem);font-weight:700;line-height:.95;letter-spacing:-3.5px;margin-bottom:1.4rem;color:#f4f4f5;">
+      Mohammed<br>
+      <span style="color:#e8ff47;">Bilal</span>
+    </h1>
+
+    <!-- Typewriter -->
+    <div class="fade-up fd4" style="font-family:'JetBrains Mono',monospace;font-size:.875rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem;min-height:1.6rem;display:flex;align-items:center;justify-content:center;gap:4px;letter-spacing:.5px;">
+      <span id="tw"></span><span style="color:#e8ff47;animation:pulse 1s step-end infinite;font-size:1.1rem;">|</span>
+    </div>
+
+    <!-- Desc -->
+    <p class="fade-up fd4" style="font-size:1rem;color:rgba(255,255,255,.42);line-height:1.85;max-width:480px;margin:0 auto 2.5rem;font-weight:400;letter-spacing:.1px;">
+      AI Developer, Full-Stack & Web3 Engineer building intelligent products — chatbots, automation systems, dApps, and modern web apps — with 3+ years and 20+ projects delivered worldwide.
+    </p>
+
+    <!-- CTAs -->
+    <div class="fade-up fd5 cta-row" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;">
+      <a href="#projects" class="btn-primary">See my work</a>
+      <a href="Mohammed_Bilal_CV.pdf" download class="btn-ghost"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" style="margin-right:2px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download CV</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aqibbilal188@gmail.com&su=Project%20Inquiry" target="_blank" rel="noopener" class="btn-ghost">Hire me ↗</a>
+    </div>
+
+    <!-- Stack pills -->
+    <div class="fade-up fd5" style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;">
+      <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">AI Agents</span><span class="chip">Web3</span><span class="chip">Solidity</span><span class="chip">WhatsApp API</span><span class="chip">Gemini</span><span class="chip">Node.js</span><span class="chip">LLMs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div style="border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:#09090b;">
+  <div class="stats-grid" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);">
+    <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
+      <div id="s1" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">0+</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">PROJECTS</div>
+    </div>
+    <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
+      <div style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">5.0★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">RATING</div>
+    </div>
+    <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
+      <div id="s3" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">0+</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">YRS EXP</div>
+    </div>
+    <div style="padding:2rem 1rem;text-align:center;">
+      <div id="s4" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">0</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">REVIEWS</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about" style="padding:7rem 2rem;max-width:900px;margin:0 auto;">
+  <div class="section-label">01 — About</div>
+  <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3rem;line-height:1.1;">Building the future,<br><span style="color:rgba(255,255,255,.3);">one commit at a time.</span></h2>
+
+  <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
+    <div>
+      <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:1.5rem;font-weight:300;">
+        I'm Mohammed — an AI Developer and Full-Stack Engineer based in Saudi Arabia. I specialise in building intelligent automation systems, AI chatbots, and modern web applications that actually solve problems.
+      </p>
+      <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300;">
+        With 3+ years of freelancing across 4 continents, I've delivered 20+ real-world projects spanning AI, full-stack, and Web3/crypto. I move fast using cutting-edge AI tools: Claude, Cursor, Gemini, and OpenAI — and I don't stop until the client is happy.
+      </p>
+    </div>
+    <div style="background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;">
+      <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:7px;background:#0d0d10;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;"></div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.2);margin-left:8px;">stack.json</span>
+      </div>
+      <div style="padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2;color:rgba(255,255,255,.55);">
+        <span style="color:rgba(255,255,255,.2);">{</span><br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"ai_tools"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Claude", "Gemini", "GPT-4"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"frontend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"React", "Next.js", "Tailwind"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"backend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Node.js", "Python", "APIs"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"speciality"</span>: <span style="color:rgba(255,255,255,.55);">"AI Agents + Web3 + Bots"</span>,<br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"location"</span>: <span style="color:rgba(255,255,255,.55);">"Saudi Arabia 🇸🇦"</span>,<br>
+        &nbsp;&nbsp;<span style="color:#e8ff47;">"status"</span>: <span style="color:#22c55e;">"open_to_work"</span><br>
+        <span style="color:rgba(255,255,255,.2);">}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
+  <div style="max-width:1060px;margin:0 auto;">
+    <div class="section-label">02 — Skills</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">What I do best.</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;">
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Web Development</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">React, Next.js, TypeScript, Tailwind CSS</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><circle cx="12" cy="16" r="1" fill="#e8ff47" stroke="none"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Agents & Automation</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Intelligent automation systems with LLMs</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">WhatsApp Chatbots</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">AI-powered bots with Gemini API + dashboard</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2 12 12"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Integration</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">OpenAI, Gemini, ElevenLabs, LLM pipelines</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Mobile Apps</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Cross-platform mobile development</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Backend & APIs</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Node.js, REST APIs, databases, cloud</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Voice Agents</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Voice AI calling agents with NLP</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Tools Expert</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Cursor, Claude, Anti Gravity, Gemini</div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Web3 & Crypto</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Smart contracts, DEX, DeFi, Solidity, dApps</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="projects" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
+  <div style="max-width:1060px;margin:0 auto;">
+    <div class="section-label">03 — Work</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">Selected projects.</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;">
+
+      <!-- Fortva -->
+      <div class="card" style="padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:22px;">📄</div>
+          <a href="https://fortva.com/" target="_blank" style="color:rgba(255,255,255,.25);text-decoration:none;font-size:18px;transition:color .2s;" onmouseover="this.style.color='#e8ff47'" onmouseout="this.style.color='rgba(255,255,255,.25)'">↗</a>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;margin-bottom:.4rem;">Fortva</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.65;">Military-grade document & contract lifecycle platform with AI intelligence, zero-knowledge encryption, and workflow automation.</div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;">
+          <span class="chip">AI</span><span class="chip">AWS</span><span class="chip">Security</span><span class="chip">Workflow</span>
+        </div>
+      </div>
+
+      <!-- GoodPappa -->
+      <div class="card" style="padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:22px;">🛒</div>
+          <a href="https://goodpappa.com/" target="_blank" style="color:rgba(255,255,255,.25);text-decoration:none;font-size:18px;transition:color .2s;" onmouseover="this.style.color='#e8ff47'" onmouseout="this.style.color='rgba(255,255,255,.25)'">↗</a>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;margin-bottom:.4rem;">GoodPappa</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.65;">Full-scale e-commerce platform with AI chatbot integration for enhanced customer experience and sales automation.</div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;">
+          <span class="chip">E-commerce</span><span class="chip">AI Chatbot</span><span class="chip">Next.js</span>
+        </div>
+      </div>
+
+      <!-- YoyoCRM — highlighted -->
+      <div class="card" style="padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem;border-color:rgba(232,255,71,.18);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:22px;">📊</div>
+          <a href="https://yoyocrm.io/" target="_blank" style="color:rgba(255,255,255,.25);text-decoration:none;font-size:18px;transition:color .2s;" onmouseover="this.style.color='#e8ff47'" onmouseout="this.style.color='rgba(255,255,255,.25)'">↗</a>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:.4rem;">
+            <div style="font-size:15px;font-weight:600;">YoyoCRM</div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;background:rgba(232,255,71,.12);color:#e8ff47;padding:2px 7px;border-radius:4px;border:1px solid rgba(232,255,71,.2);">NEW</span>
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.65;">AI-powered CRM combining pipeline management, WhatsApp unified inbox, smart lead routing, and AI suggested replies.</div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;">
+          <span class="chip">CRM</span><span class="chip">WhatsApp</span><span class="chip">AI</span><span class="chip">Pipeline</span>
+        </div>
+      </div>
+
+      <!-- Orange County -->
+      <div class="card" style="padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="font-size:22px;">🏥</div>
+          <a href="https://orangecountyrehabcalimktg.com/" target="_blank" style="color:rgba(255,255,255,.25);text-decoration:none;font-size:18px;transition:color .2s;" onmouseover="this.style.color='#e8ff47'" onmouseout="this.style.color='rgba(255,255,255,.25)'">↗</a>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:600;margin-bottom:.4rem;">Orange County Rehab</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.65;">LLM-connected AI chatbot with live chat, lead generation, and English/Spanish bilingual support.</div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:auto;">
+          <span class="chip">LLM</span><span class="chip">Live Chat</span><span class="chip">Multi-lang</span>
+        </div>
+      </div>
+
+      <!-- AI Calling Agent — video -->
+      <div class="card" style="overflow:hidden;display:flex;flex-direction:column;">
+        <div style="position:relative;cursor:pointer;" onclick="openV('ai-calling-agent.mp4')">
+          <video src="ai-calling-agent.mp4" style="width:100%;height:150px;object-fit:cover;display:block;" muted preload="metadata" onloadedmetadata="this.currentTime=1.5"></video>
+          <div style="position:absolute;inset:0;background:rgba(9,9,11,.45);display:flex;align-items:center;justify-content:center;transition:background .2s;" onmouseover="this.style.background='rgba(9,9,11,.2)'" onmouseout="this.style.background='rgba(9,9,11,.45)'">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(232,255,71,.9);display:flex;align-items:center;justify-content:center;font-size:16px;color:#09090b;">▶</div>
+          </div>
+          <div style="position:absolute;top:10px;right:10px;font-family:'JetBrains Mono',monospace;font-size:9px;background:rgba(232,255,71,.9);color:#09090b;padding:3px 8px;border-radius:4px;font-weight:700;">VIDEO</div>
+        </div>
+        <div style="padding:1.3rem;display:flex;flex-direction:column;gap:.75rem;">
+          <div style="font-size:14px;font-weight:600;">AI Calling Agent</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">AI-powered voice calling agent for business automation with NLP.</div>
+          <div style="display:flex;gap:5px;"><span class="chip">Voice AI</span><span class="chip">NLP</span><span class="chip">Automation</span></div>
+        </div>
+      </div>
+
+      <!-- Crypto DEX — video -->
+      <div class="card" style="overflow:hidden;display:flex;flex-direction:column;">
+        <div style="position:relative;cursor:pointer;" onclick="openV('crypto-dex.mp4')">
+          <video src="crypto-dex.mp4" style="width:100%;height:150px;object-fit:cover;display:block;" muted preload="metadata" onloadedmetadata="this.currentTime=1.5"></video>
+          <div style="position:absolute;inset:0;background:rgba(9,9,11,.45);display:flex;align-items:center;justify-content:center;transition:background .2s;" onmouseover="this.style.background='rgba(9,9,11,.2)'" onmouseout="this.style.background='rgba(9,9,11,.45)'">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(232,255,71,.9);display:flex;align-items:center;justify-content:center;font-size:16px;color:#09090b;">▶</div>
+          </div>
+          <div style="position:absolute;top:10px;right:10px;font-family:'JetBrains Mono',monospace;font-size:9px;background:rgba(232,255,71,.9);color:#09090b;padding:3px 8px;border-radius:4px;font-weight:700;">VIDEO</div>
+        </div>
+        <div style="padding:1.3rem;display:flex;flex-direction:column;gap:.75rem;">
+          <div style="font-size:14px;font-weight:600;">Crypto AI DEX</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Decentralised exchange with integrated AI features for crypto trading.</div>
+          <div style="display:flex;gap:5px;"><span class="chip">Blockchain</span><span class="chip">Web3</span><span class="chip">AI</span></div>
+        </div>
+      </div>
+
+      <!-- WhatsApp — video -->
+      <div class="card" style="overflow:hidden;display:flex;flex-direction:column;">
+        <div style="position:relative;cursor:pointer;" onclick="openV('whatsapp-chatbot.mp4')">
+          <video src="whatsapp-chatbot.mp4" style="width:100%;height:150px;object-fit:cover;display:block;" muted preload="metadata" onloadedmetadata="this.currentTime=1.5"></video>
+          <div style="position:absolute;inset:0;background:rgba(9,9,11,.45);display:flex;align-items:center;justify-content:center;transition:background .2s;" onmouseover="this.style.background='rgba(9,9,11,.2)'" onmouseout="this.style.background='rgba(9,9,11,.45)'">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(232,255,71,.9);display:flex;align-items:center;justify-content:center;font-size:16px;color:#09090b;">▶</div>
+          </div>
+          <div style="position:absolute;top:10px;right:10px;font-family:'JetBrains Mono',monospace;font-size:9px;background:rgba(232,255,71,.9);color:#09090b;padding:3px 8px;border-radius:4px;font-weight:700;">VIDEO</div>
+        </div>
+        <div style="padding:1.3rem;display:flex;flex-direction:column;gap:.75rem;">
+          <div style="font-size:14px;font-weight:600;">AI WhatsApp Chatbot</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Gemini-powered WhatsApp bots with full admin dashboard.</div>
+          <div style="display:flex;gap:5px;"><span class="chip">WhatsApp</span><span class="chip">Gemini</span><span class="chip">Dashboard</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="reviews" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
+  <div style="max-width:1060px;margin:0 auto;">
+    <div class="section-label">04 — Reviews</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3.5rem;">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;">What clients say.</h2>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.2);">5.0★ · 10+ verified reviews</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
+
+      <div class="card" style="padding:1.75rem;">
+        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Mohammad built a fully customised WhatsApp chatbot system for me with server and even helped me set up. I highly recommend him!"</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
+          <div style="font-size:13px;font-weight:500;">gautammalik209</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Italy 🇮🇹</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.75rem;">
+        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Mohammed is a very hard worker. I asked him to revisit details and he did exactly as I asked. He is a great developer!"</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
+          <div style="font-size:13px;font-weight:500;">lovelylj</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">United States 🇺🇸</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.75rem;">
+        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Second time working with Mohammed — excellent job again. Understood requirements clearly and delivered exactly what I wanted."</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
+          <div style="font-size:13px;font-weight:500;">anum_danial</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.75rem;">
+        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Wonderful experience. Knowledgeable, hardworking, fast — delivers excellent work above and beyond expectations."</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
+          <div style="font-size:13px;font-weight:500;">babarali677</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="section-label">05 — Contact</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:.75rem;">Let's work together.</h2>
+    <p style="font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:3.5rem;font-weight:300;">Open to full-time roles, freelance projects, and long-term collaborations.</p>
+
+    <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start;">
+      <div>
+        <div style="display:flex;align-items:center;gap:9px;padding:14px 18px;background:#111114;border:1px solid rgba(34,197,94,.15);border-radius:10px;margin-bottom:2rem;">
+          <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2.5s ease-in-out infinite;flex-shrink:0;"></div>
+          <div><div style="font-size:13px;font-weight:500;">Currently available</div><div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:2px;">Remote & Saudi Arabia</div></div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aqibbilal188@gmail.com&su=Project%20Inquiry" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+            <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">EMAIL</div><div style="font-size:13px;color:rgba(255,255,255,.7);">aqibbilal188@gmail.com</div></div>
+          </a>
+          <a href="tel:+966536849821" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">SAUDI ARABIA 🇸🇦</div><div style="font-size:13px;color:rgba(255,255,255,.7);">+966 53 684 9821</div></div>
+          </a>
+          <a href="tel:+91810647113" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">INDIA 🇮🇳</div><div style="font-size:13px;color:rgba(255,255,255,.7);">+91 81064 7113</div></div>
+          </a>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a href="https://www.linkedin.com/in/mohammed-bilal-4a0282270/" target="_blank" class="btn-ghost" style="padding:9px 16px;font-size:12px;">LinkedIn</a>
+          <a href="https://github.com/aqibbilal188" target="_blank" class="btn-ghost" style="padding:9px 16px;font-size:12px;">GitHub</a>
+          <a href="https://wa.me/966536849821" target="_blank" rel="noopener" class="btn-ghost" style="padding:9px 16px;font-size:12px;">WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="card" style="padding:2rem;">
+        <form id="cf">
+          <div style="margin-bottom:1.1rem;">
+            <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">NAME</label>
+            <input type="text" required placeholder="Your name" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
+          </div>
+          <div style="margin-bottom:1.1rem;">
+            <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">EMAIL</label>
+            <input type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">MESSAGE</label>
+            <textarea required placeholder="Tell me about your project..." rows="4" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;resize:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'"></textarea>
+          </div>
+          <button type="submit" id="sb" class="btn-primary" style="width:100%;justify-content:center;">Send message</button>
+        </form>
+      </div>
+    </div>
+
+    <div style="margin-top:5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.15);">© 2026 Mohammed Bilal</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.12);">AI Developer · Full-Stack · Saudi Arabia 🇸🇦</div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script>
+(function(){
+
+
+/* ── VIDEO ── */
+window.openV=src=>{const v=document.getElementById('vp');v.src=src;v.play();document.getElementById('vmodal').classList.add('open');};
+window.closeV=()=>{const v=document.getElementById('vp');v.pause();v.src='';document.getElementById('vmodal').classList.remove('open');};
+document.getElementById('vmodal').addEventListener('click',e=>{if(e.target===document.getElementById('vmodal'))closeV();});
+
+/* ── THREE.JS — subtle background ── */
+if(typeof THREE!=='undefined'){
+  const hero=document.querySelector('section');
+  const canvas=document.getElementById('bg3d');
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(55,1,0.1,80);
+  cam.position.z=5;
+
+  function resize(){
+    renderer.setSize(hero.offsetWidth,hero.offsetHeight);
+    cam.aspect=hero.offsetWidth/hero.offsetHeight;
+    cam.updateProjectionMatrix();
+  }
+  resize(); window.addEventListener('resize',resize);
+
+  /* Particles only — clean, subtle */
+  const geo=new THREE.BufferGeometry();
+  const n=1800, pos=new Float32Array(n*3);
+  for(let i=0;i<n*3;i++) pos[i]=(Math.random()-.5)*22;
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0xe8ff47,size:.025,transparent:true,opacity:.28})));
+
+  /* One elegant wireframe object — right side */
+  const torus=new THREE.Mesh(
+    new THREE.TorusKnotGeometry(1.05,.26,80,14,2,3),
+    new THREE.MeshBasicMaterial({color:0xe8ff47,wireframe:true,transparent:true,opacity:.08})
+  );
+  torus.position.set(3.5,0,-1);
+  scene.add(torus);
+
+  /* Small icosahedron — left */
+  const ico=new THREE.Mesh(
+    new THREE.IcosahedronGeometry(.7,1),
+    new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.05})
+  );
+  ico.position.set(-3.8,.5,-1);
+  scene.add(ico);
+
+  let mx=0,my=0,t=0;
+  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.3;my=-(e.clientY/innerHeight-.5)*.2;});
+
+  (function loop(){
+    requestAnimationFrame(loop); t+=.005;
+    torus.rotation.x=t*.4; torus.rotation.y=t*.7;
+    ico.rotation.x=t*.6; ico.rotation.y=-t*.4;
+    cam.position.x+=(mx-cam.position.x)*.04;
+    cam.position.y+=(my-cam.position.y)*.04;
+    cam.lookAt(scene.position);
+    renderer.render(scene,cam);
+  })();
+}
+
+/* ── TYPEWRITER ── */
+const words=['AI Developer','Full-Stack Engineer','WhatsApp Bot Builder','5-Star Rated Freelancer','AI Automation Expert'];
+let wi=0,ci=0,del=false;
+const el=document.getElementById('tw');
+function type(){
+  const w=words[wi];
+  if(!del){el.textContent=w.slice(0,ci+1);ci++;if(ci===w.length){del=true;setTimeout(type,2400);return;}}
+  else{el.textContent=w.slice(0,ci-1);ci--;if(ci===0){del=false;wi=(wi+1)%words.length;}}
+  setTimeout(type,del?38:90);
+}
+type();
+
+/* ── COUNTERS ── */
+function count(id,to,suf,ms){
+  const e=document.getElementById(id),s=Date.now();
+  (function t(){const p=Math.min((Date.now()-s)/ms,1),v=1-Math.pow(1-p,3);e.textContent=Math.round(v*to)+suf;if(p<1)requestAnimationFrame(t);})();
+}
+const obs=new IntersectionObserver(en=>{
+  if(en[0].isIntersecting){count('s1',20,'+',1500);count('s3',3,'+',1300);count('s4',10,'',1400);obs.disconnect();}
+},{threshold:.3});
+obs.observe(document.getElementById('s1').parentElement.parentElement);
+
+/* ── SCROLL-REVEAL ── */
+const io=new IntersectionObserver(en=>{
+  en.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.card,[id]').forEach(el=>{
+  if(el.tagName!=='SECTION'&&!el.querySelector('canvas')){
+    el.style.opacity='0';el.style.transform='translateY(20px)';
+    el.style.transition='opacity .6s ease, transform .6s ease';
+    io.observe(el);
+  }
+});
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.background=scrollY>40?'rgba(9,9,11,.96)':'rgba(9,9,11,.8)';
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+});
+
+/* ── FORM ── */
+document.getElementById('cf').addEventListener('submit',function(e){
+  e.preventDefault();
+  const b=document.getElementById('sb');
+  b.textContent='Message sent ✓'; b.style.background='#22c55e'; b.style.color='#fff';
+  setTimeout(()=>{b.textContent='Send message';b.style.background='#e8ff47';b.style.color='#09090b';this.reset();},3000);
+});
+
+})();
+</script>
+</body>
+</html>
