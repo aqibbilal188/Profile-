@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Bilal — AI Developer</title>
+<title>Mohammed Bilal | AI Developer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -19,20 +19,74 @@ body {
 }
 
 /* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 3rem; height: 64px;
-  background: rgba(9,9,11,.8); backdrop-filter: blur(20px) saturate(1.5);
-  border-bottom: 1px solid rgba(255,255,255,.05);
-  transition: background .3s;
+.nav-wrap {
+  position: fixed; top: 14px; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: center; padding: 0 16px; pointer-events: none;
+  transition: top .3s;
 }
-.logo { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: #e8ff47; letter-spacing: .5px; }
-.nav-links { display: flex; gap: 2.5rem; }
-.nav-links a { color: rgba(255,255,255,.38); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: .2px; transition: color .2s; }
-.nav-links a:hover { color: #f4f4f5; }
-.avail { display: flex; align-items: center; gap: 7px; font-size: 11px; color: rgba(255,255,255,.32); font-family: 'JetBrains Mono', monospace; letter-spacing: .5px; }
-.avail-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2.5s ease-in-out infinite; }
+.nav-wrap.scrolled { top: 8px; }
+nav {
+  pointer-events: auto; width: 100%; max-width: 1060px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0 8px 0 20px; border-radius: 16px;
+  background: rgba(17,17,20,.72); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+  transition: background .3s, border-color .3s;
+}
+.nav-wrap.scrolled nav { background: rgba(12,12,14,.9); border-color: rgba(255,255,255,.1); }
+.logo { color: #f4f4f5; }
+.nav-links { position: relative; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 12px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.05); }
+.nav-links a {
+  position: relative; z-index: 1; display: inline-flex; align-items: baseline; gap: 5px;
+  padding: 0 14px; height: 36px; line-height: 36px; border-radius: 9px;
+  color: rgba(255,255,255,.66); text-decoration: none; font-size: 13.5px; font-weight: 500;
+  transition: color .25s;
+}
+.nav-links a sup { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: rgba(255,255,255,.38); transition: color .25s; }
+.nav-links a:hover, .nav-links a.active { color: #09090b; }
+.nav-links a:hover sup, .nav-links a.active sup { color: rgba(9,9,11,.55); }
+.nav-ind {
+  position: absolute; z-index: 0; top: 4px; height: 36px; left: 0; width: 0;
+  background: #e8ff47; border-radius: 9px; opacity: 0;
+  transition: left .35s cubic-bezier(.16,1,.3,1), width .35s cubic-bezier(.16,1,.3,1), opacity .2s;
+}
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-clock { display: flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: rgba(255,255,255,.62); letter-spacing: .5px; white-space: nowrap; }
+.avail-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 3px rgba(34,197,94,.18); animation: pulse 2.5s ease-in-out infinite; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 8px 0 16px;
+  border-radius: 11px; background: #f4f4f5; color: #09090b; text-decoration: none;
+  font-size: 13.5px; font-weight: 700; transition: background .2s;
+}
+.nav-cta:hover { background: #e8ff47; }
+.nav-cta i { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: #09090b; color: #e8ff47; transition: transform .25s; }
+.nav-cta:hover i { transform: rotate(-45deg); }
+.nav-burger { display: none; width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color: #f4f4f5; cursor: pointer; align-items: center; justify-content: center; }
+.nav-burger span, .nav-burger span::before { display: block; width: 18px; height: 1.6px; background: currentColor; border-radius: 2px; transition: transform .3s; position: relative; }
+.nav-burger span::before { content: ''; position: absolute; top: 6px; width: 12px; }
+.nav-burger span { transform: translateY(-3px); }
+.nav-burger[aria-expanded="true"] span { transform: rotate(45deg); }
+.nav-burger[aria-expanded="true"] span::before { transform: translateY(-6px) rotate(-90deg); width: 18px; }
+
+#mmenu {
+  position: fixed; inset: 0; z-index: 99; background: rgba(9,9,11,.97); backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; justify-content: center; padding: 6rem 1.5rem 2rem;
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+}
+#mmenu.open { opacity: 1; visibility: visible; }
+#mmenu a.mm-link {
+  display: flex; align-items: baseline; gap: 14px; padding: .55rem 0;
+  font-family: 'Space Grotesk', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -1.5px;
+  color: #f4f4f5; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.06);
+  transform: translateY(16px); opacity: 0; transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .45s, color .2s;
+}
+#mmenu a.mm-link sup { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0; color: #e8ff47; }
+#mmenu a.mm-link:hover { color: #e8ff47; }
+#mmenu.open a.mm-link { transform: none; opacity: 1; }
+#mmenu.open a.mm-link:nth-child(2) { transition-delay: .04s } #mmenu.open a.mm-link:nth-child(3) { transition-delay: .08s }
+#mmenu.open a.mm-link:nth-child(4) { transition-delay: .12s } #mmenu.open a.mm-link:nth-child(5) { transition-delay: .16s }
+.mm-foot { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,.6); }
 
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
 @keyframes fadeUp { from { opacity:0; transform:translateY(24px) } to { opacity:1; transform:translateY(0) } }
@@ -169,16 +223,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .stats-grid > div:nth-child(1), .stats-grid > div:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.06) !important; }
   .about-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
 }
-@media (max-width: 960px) and (min-width: 721px) {
-  nav { padding: 0 1.5rem; }
-  .nav-links { gap: 1.5rem; }
-  .avail { display: none; }
+@media (max-width: 1080px) { .nav-clock { display: none; } }
+@media (max-width: 860px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: inline-flex; }
 }
 @media (max-width: 720px) {
-  nav { padding: 0 1.25rem !important; }
-  .nav-links { display: none !important; }
   .logo > span { font-size: 16px !important; }
-  .avail { font-size: 10px !important; }
   section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
   #about, #skills, #projects, #reviews, #contact { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
   h2[class*="font-display"], .font-display { letter-spacing: -1px !important; }
@@ -203,19 +254,35 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </div>
 
 <!-- NAV -->
-<nav id="nav">
-  <a href="#" class="logo" aria-label="Mohammed Bilal — back to top" style="text-decoration:none;display:flex;align-items:center;min-height:44px;">
+<header class="nav-wrap" id="navwrap">
+<nav id="nav" aria-label="Main">
+  <a href="#" class="logo" aria-label="Mohammed Bilal, back to top" style="text-decoration:none;display:flex;align-items:center;min-height:44px;">
     <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#f4f4f5;letter-spacing:-.4px;">Mohammed Bilal<span style="color:#e8ff47;">.</span></span>
   </a>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#reviews">Reviews</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-links" id="navlinks">
+    <span class="nav-ind" id="navind" aria-hidden="true"></span>
+    <a href="#about"><sup>01</sup>About</a>
+    <a href="#skills"><sup>02</sup>Skills</a>
+    <a href="#projects"><sup>03</sup>Work</a>
+    <a href="#reviews"><sup>04</sup>Reviews</a>
+    <a href="#contact"><sup>05</sup>Contact</a>
   </div>
-  <div class="avail"><div class="avail-dot"></div>Open to work</div>
+  <div class="nav-right">
+    <div class="nav-clock"><span class="avail-dot" aria-hidden="true"></span><span>Open to work · Riyadh <time class="clock">--:--</time></span></div>
+    <a href="#contact" class="nav-cta">Let's talk <i aria-hidden="true"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+    <button type="button" class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
 </nav>
+</header>
+
+<div id="mmenu" aria-label="Menu">
+  <a class="mm-link" href="#about"><sup>01</sup>About</a>
+  <a class="mm-link" href="#skills"><sup>02</sup>Skills</a>
+  <a class="mm-link" href="#projects"><sup>03</sup>Work</a>
+  <a class="mm-link" href="#reviews"><sup>04</sup>Reviews</a>
+  <a class="mm-link" href="#contact"><sup>05</sup>Contact</a>
+  <div class="mm-foot"><span style="display:flex;align-items:center;gap:8px;"><span class="avail-dot" aria-hidden="true"></span>Open to work</span><span>Riyadh <time class="clock">--:--</time></span></div>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; padding-top:64px;">
@@ -238,7 +305,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     <!-- Tag -->
     <div class="fade-up fd2" style="margin-bottom:1.5rem;">
       <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.72);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;letter-spacing:1px;">
-        <span style="color:#e8ff47;" aria-hidden="true">★</span> 5.0 · 10+ REVIEWS · SAUDI ARABIA
+        <span style="color:#e8ff47;" aria-hidden="true">★</span> 5-STAR RATED BY EVERY CLIENT · SAUDI ARABIA
       </span>
     </div>
 
@@ -255,7 +322,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
     <!-- Desc -->
     <p class="fade-up fd4" style="font-size:1.0625rem;color:rgba(255,255,255,.72);line-height:1.75;max-width:520px;margin:0 auto 2.5rem;font-weight:400;letter-spacing:.1px;">
-      AI Developer, Full-Stack & Web3 Engineer building intelligent products — chatbots, automation systems, dApps, and modern web apps — with 3+ years and 20+ projects delivered worldwide.
+      AI Developer, Full-Stack & Web3 Engineer building intelligent products: chatbots, automation systems, dApps and modern web apps. 3+ years and 20+ projects delivered worldwide.
     </p>
 
     <!-- CTAs -->
@@ -288,24 +355,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">YRS EXP</div>
     </div>
     <div style="padding:2rem 1rem;text-align:center;">
-      <div id="s4" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">10</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">REVIEWS</div>
+      <div id="s4" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">4</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">CONTINENTS</div>
     </div>
   </div>
 </div>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about" style="padding:7rem 2rem;max-width:900px;margin:0 auto;">
-  <div class="section-label">01 — About</div>
+  <div class="section-label">01 / About</div>
   <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3rem;line-height:1.1;">Building the future,<br><span style="color:rgba(255,255,255,.3);">one commit at a time.</span></h2>
 
   <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
     <div>
       <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:1.5rem;font-weight:300;">
-        I'm Mohammed — an AI Developer and Full-Stack Engineer based in Saudi Arabia. I specialise in building intelligent automation systems, AI chatbots, and modern web applications that actually solve problems.
+        I'm Mohammed, an AI Developer and Full-Stack Engineer based in Saudi Arabia. I specialise in building intelligent automation systems, AI chatbots, and modern web applications that actually solve problems.
       </p>
       <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300;">
-        With 3+ years of freelancing across 4 continents, I've delivered 20+ real-world projects spanning AI, full-stack, and Web3/crypto. I move fast using cutting-edge AI tools: Claude, Cursor, Gemini, and OpenAI — and I don't stop until the client is happy.
+        With 3+ years of freelancing across 4 continents, I've delivered 20+ real-world projects spanning AI, full-stack, and Web3/crypto. I move fast using cutting-edge AI tools: Claude, Cursor, Gemini and OpenAI, and I don't stop until the client is happy.
       </p>
     </div>
     <div style="background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;">
@@ -332,7 +399,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ═══ SKILLS ═══ -->
 <section id="skills" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
   <div style="max-width:1060px;margin:0 auto;">
-    <div class="section-label">02 — Skills</div>
+    <div class="section-label">02 / Skills</div>
     <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">What I do best.</h2>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;">
@@ -397,12 +464,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ═══ PROJECTS ═══ -->
 <section id="projects" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
   <div style="max-width:1060px;margin:0 auto;">
-    <div class="section-label">03 — Work</div>
+    <div class="section-label">03 / Work</div>
     <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">Selected projects.</h2>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;align-items:stretch;">
 
-      <!-- YoyoCRM — newest, highlighted -->
+      <!-- YoyoCRM: newest, highlighted -->
       <article class="card proj" style="border-color:rgba(232,255,71,.22);">
         <div class="proj-body">
           <div class="proj-head">
@@ -466,7 +533,71 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         </div>
       </article>
 
-      <!-- AI Calling Agent — video -->
+      <!-- Wasil -->
+      <article class="card proj" style="border-color:rgba(232,255,71,.22);">
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></div>
+          </div>
+          <div>
+            <div class="proj-kind">AI SaaS · Gulf market</div>
+            <h3 class="proj-title">Wasil <span class="badge-new">NEW</span></h3>
+          </div>
+          <p class="proj-desc">AI calling agent and WhatsApp chatbot for Gulf businesses. Arabic voice AI with Saudi dialect support, answering calls and messages 24/7.</p>
+          <div class="proj-tags"><span class="chip">Voice AI</span><span class="chip">Arabic NLP</span><span class="chip">WhatsApp</span><span class="chip">SaaS</span></div>
+          <a class="proj-link" href="https://www.getwasil.com/" target="_blank" rel="noopener">Visit live site <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <!-- Excellent Electronics CRM -->
+      <article class="card proj">
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          </div>
+          <div>
+            <div class="proj-kind">Full CRM · 2 apps</div>
+            <h3 class="proj-title">Excellent Electronics</h3>
+          </div>
+          <p class="proj-desc">Booking site for a Hyderabad appliance repair center, backed by a full CRM and two connected apps that manage jobs, technicians and WhatsApp bookings.</p>
+          <div class="proj-tags"><span class="chip">CRM</span><span class="chip">Backend</span><span class="chip">Mobile Apps</span><span class="chip">WhatsApp</span></div>
+          <a class="proj-link" href="https://excelentcrm.onrender.com/" target="_blank" rel="noopener">Visit live site <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <!-- Maktab Elite -->
+      <article class="card proj">
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 10h18M5 10v10M19 10v10M8 10V6h8v4"/></svg></div>
+          </div>
+          <div>
+            <div class="proj-kind">E-commerce · Arabic</div>
+            <h3 class="proj-title">Maktab Elite</h3>
+          </div>
+          <p class="proj-desc">Arabic-first storefront for a Saudi office furniture brand, with SEO for every major city and WhatsApp ordering.</p>
+          <div class="proj-tags"><span class="chip">RTL / Arabic</span><span class="chip">SEO</span><span class="chip">E-commerce</span></div>
+          <a class="proj-link" href="https://www.maktabelite.com/" target="_blank" rel="noopener">Visit live site <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <!-- Nomada -->
+      <article class="card proj">
+        <div class="proj-body">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          </div>
+          <div>
+            <div class="proj-kind">3D landing page</div>
+            <h3 class="proj-title">Nómada Comunicación</h3>
+          </div>
+          <p class="proj-desc">Interactive 3D landing page for a bilingual marketing agency in Miami, in Spanish and English.</p>
+          <div class="proj-tags"><span class="chip">3D / WebGL</span><span class="chip">Bilingual</span><span class="chip">Landing Page</span></div>
+          <a class="proj-link" href="https://www.nomadamiami.com/" target="_blank" rel="noopener">Visit live site <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg><span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+      </article>
+
+      <!-- AI Calling Agent: video -->
       <article class="card proj">
         <button type="button" class="proj-media" onclick="openV('ai-calling-agent.mp4', this)" aria-label="Play AI Calling Agent demo video">
           <video src="ai-calling-agent.mp4#t=1.5" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
@@ -483,7 +614,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         </div>
       </article>
 
-      <!-- Crypto DEX — video -->
+      <!-- Crypto DEX: video -->
       <article class="card proj">
         <button type="button" class="proj-media" onclick="openV('crypto-dex.mp4', this)" aria-label="Play Crypto AI DEX demo video">
           <video src="crypto-dex.mp4#t=1.5" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
@@ -500,7 +631,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         </div>
       </article>
 
-      <!-- WhatsApp — video -->
+      <!-- WhatsApp: video -->
       <article class="card proj">
         <button type="button" class="proj-media" onclick="openV('whatsapp-chatbot.mp4', this)" aria-label="Play AI WhatsApp Chatbot demo video">
           <video src="whatsapp-chatbot.mp4#t=1.5" muted playsinline preload="metadata" tabindex="-1" aria-hidden="true"></video>
@@ -524,10 +655,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ═══ REVIEWS ═══ -->
 <section id="reviews" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
   <div style="max-width:1060px;margin:0 auto;">
-    <div class="section-label">04 — Reviews</div>
+    <div class="section-label">04 / Reviews</div>
     <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3.5rem;">
       <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;">What clients say.</h2>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.2);">5.0★ · 10+ verified reviews</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);">5.0★ from every client</span>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
@@ -552,7 +683,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <div class="card" style="padding:1.75rem;">
         <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Second time working with Mohammed — excellent job again. Understood requirements clearly and delivered exactly what I wanted."</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Second time working with Mohammed, excellent job again. Understood requirements clearly and delivered exactly what I wanted."</p>
         <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
           <div style="font-size:13px;font-weight:500;">anum_danial</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
@@ -561,7 +692,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <div class="card" style="padding:1.75rem;">
         <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Wonderful experience. Knowledgeable, hardworking, fast — delivers excellent work above and beyond expectations."</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Wonderful experience. Knowledgeable, hardworking, fast and delivers excellent work above and beyond expectations."</p>
         <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
           <div style="font-size:13px;font-weight:500;">babarali677</div>
           <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
@@ -575,7 +706,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <!-- ═══ CONTACT ═══ -->
 <section id="contact" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
   <div style="max-width:900px;margin:0 auto;">
-    <div class="section-label">05 — Contact</div>
+    <div class="section-label">05 / Contact</div>
     <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:.75rem;">Let's work together.</h2>
     <p style="font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:3.5rem;font-weight:300;">Open to full-time roles, freelance projects, and long-term collaborations.</p>
 
@@ -649,7 +780,7 @@ window.closeV=()=>{const v=document.getElementById('vp');v.pause();v.src='';docu
 document.getElementById('vmodal').addEventListener('click',e=>{if(e.target===document.getElementById('vmodal'))closeV();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('vmodal').classList.contains('open'))closeV();});
 
-/* ── THREE.JS — subtle particle background ── */
+/* ── THREE.JS: subtle particle background ── */
 if(typeof THREE!=='undefined'&&!reduceMotion){
   const hero=document.querySelector('section');
   const canvas=document.getElementById('bg3d');
@@ -666,7 +797,7 @@ if(typeof THREE!=='undefined'&&!reduceMotion){
   }
   resize(); window.addEventListener('resize',resize);
 
-  /* Particles only — clean, subtle */
+  /* Particles only, clean and subtle */
   const geo=new THREE.BufferGeometry();
   const n=1800, pos=new Float32Array(n*3);
   for(let i=0;i<n*3;i++) pos[i]=(Math.random()-.5)*22;
@@ -707,7 +838,7 @@ function count(id,to,suf,ms){
   (function t(){const p=Math.min((Date.now()-s)/ms,1),v=1-Math.pow(1-p,3);e.textContent=Math.round(v*to)+suf;if(p<1)requestAnimationFrame(t);})();
 }
 const obs=new IntersectionObserver(en=>{
-  if(en[0].isIntersecting&&!reduceMotion){count('s1',20,'+',1500);count('s3',3,'+',1300);count('s4',10,'',1400);obs.disconnect();}
+  if(en[0].isIntersecting&&!reduceMotion){count('s1',20,'+',1500);count('s3',3,'+',1300);count('s4',4,'',1200);obs.disconnect();}
 },{threshold:.3});
 obs.observe(document.getElementById('s1').parentElement.parentElement);
 
@@ -716,17 +847,53 @@ const io=new IntersectionObserver(en=>{
   en.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}});
 },{threshold:.1});
 if(!reduceMotion) document.querySelectorAll('.card,[id]').forEach(el=>{
-  if(el.tagName!=='SECTION'&&!el.querySelector('canvas')&&!el.closest('#vmodal,nav')&&!/^(s[134]|tw|tw-caret)$/.test(el.id)){
+  if(el.tagName!=='SECTION'&&!el.querySelector('canvas')&&!el.closest('#vmodal,#navwrap,#mmenu')&&!/^(s[134]|tw|tw-caret)$/.test(el.id)){
     el.style.opacity='0';el.style.transform='translateY(20px)';
     el.style.transition='opacity .6s ease, transform .6s ease';
     io.observe(el);
   }
 });
 
-/* ── NAV SCROLL ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').style.background=scrollY>40?'rgba(9,9,11,.96)':'rgba(9,9,11,.8)';
-});
+/* ── NAV ── */
+const navwrap=document.getElementById('navwrap');
+window.addEventListener('scroll',()=>navwrap.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+// Sliding highlight: follows hover, rests on the section in view
+const links=[...document.querySelectorAll('#navlinks a')], ind=document.getElementById('navind');
+let current=null;
+function moveInd(a){
+  if(!a){ind.style.opacity='0';return;}
+  ind.style.left=a.offsetLeft+'px'; ind.style.width=a.offsetWidth+'px'; ind.style.opacity='1';
+}
+links.forEach(a=>{a.addEventListener('mouseenter',()=>moveInd(a));a.addEventListener('focus',()=>moveInd(a));});
+document.getElementById('navlinks').addEventListener('mouseleave',()=>moveInd(current));
+const spy=new IntersectionObserver(en=>{
+  en.forEach(e=>{if(e.isIntersecting){
+    current=links.find(a=>a.getAttribute('href')==='#'+e.target.id)||null;
+    links.forEach(a=>a.classList.toggle('active',a===current));
+    moveInd(current);
+  }});
+},{rootMargin:'-45% 0px -50% 0px'});
+['about','skills','projects','reviews','contact'].forEach(id=>spy.observe(document.getElementById(id)));
+window.addEventListener('resize',()=>moveInd(current));
+
+// Riyadh local time
+function tick(){
+  const t=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Riyadh'});
+  document.querySelectorAll('.clock').forEach(c=>c.textContent=t);
+}
+tick(); setInterval(tick,30000);
+
+// Mobile menu
+const burger=document.getElementById('burger'), mmenu=document.getElementById('mmenu');
+function setMenu(open){
+  mmenu.classList.toggle('open',open); burger.setAttribute('aria-expanded',open);
+  burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+  document.body.style.overflow=open?'hidden':'';
+}
+burger.addEventListener('click',()=>setMenu(!mmenu.classList.contains('open')));
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mmenu.classList.contains('open')){setMenu(false);burger.focus();}});
 
 /* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
