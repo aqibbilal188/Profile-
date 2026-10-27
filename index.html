@@ -8,10 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+:root { --accent: #725bfa; --accent-text: #a596ff; --surface: #28243f; --iron: #53515f; --fog: #9fa1ae; }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  background: #09090b;
+  background: #0a011a;
   color: #f4f4f5;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-feature-settings: 'cv02','cv03','cv04','cv11';
@@ -29,12 +30,12 @@ nav {
   pointer-events: auto; width: 100%; max-width: 1060px; height: 60px;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 0 8px 0 20px; border-radius: 16px;
-  background: rgba(17,17,20,.72); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  background: rgba(26,20,48,.72); backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
   transition: background .3s, border-color .3s;
 }
-.nav-wrap.scrolled nav { background: rgba(12,12,14,.9); border-color: rgba(255,255,255,.1); }
+.nav-wrap.scrolled nav { background: rgba(14,6,32,.9); border-color: rgba(255,255,255,.1); }
 .logo { color: #f4f4f5; }
 .nav-links { position: relative; display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 12px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.05); }
 .nav-links a {
@@ -44,11 +45,11 @@ nav {
   transition: color .25s;
 }
 .nav-links a sup { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: rgba(255,255,255,.38); transition: color .25s; }
-.nav-links a:hover, .nav-links a.active { color: #09090b; }
-.nav-links a:hover sup, .nav-links a.active sup { color: rgba(9,9,11,.55); }
+.nav-links a:hover, .nav-links a.active { color: #0a011a; }
+.nav-links a:hover sup, .nav-links a.active sup { color: rgba(10,1,26,.55); }
 .nav-ind {
   position: absolute; z-index: 0; top: 4px; height: 36px; left: 0; width: 0;
-  background: #e8ff47; border-radius: 9px; opacity: 0;
+  background: var(--accent); border-radius: 9px; opacity: 0;
   transition: left .35s cubic-bezier(.16,1,.3,1), width .35s cubic-bezier(.16,1,.3,1), opacity .2s;
 }
 .nav-right { display: flex; align-items: center; gap: 10px; }
@@ -56,11 +57,11 @@ nav {
 .avail-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 0 3px rgba(34,197,94,.18); animation: pulse 2.5s ease-in-out infinite; }
 .nav-cta {
   display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 8px 0 16px;
-  border-radius: 11px; background: #f4f4f5; color: #09090b; text-decoration: none;
+  border-radius: 11px; background: #f4f4f5; color: #0a011a; text-decoration: none;
   font-size: 13.5px; font-weight: 700; transition: background .2s;
 }
-.nav-cta:hover { background: #e8ff47; }
-.nav-cta i { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: #09090b; color: #e8ff47; transition: transform .25s; }
+.nav-cta:hover { background: var(--accent); }
+.nav-cta i { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: #0a011a; color:var(--accent-text); transition: transform .25s; }
 .nav-cta:hover i { transform: rotate(-45deg); }
 .nav-burger { display: none; width: 44px; height: 44px; border-radius: 11px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.04); color: #f4f4f5; cursor: pointer; align-items: center; justify-content: center; }
 .nav-burger span, .nav-burger span::before { display: block; width: 18px; height: 1.6px; background: currentColor; border-radius: 2px; transition: transform .3s; position: relative; }
@@ -70,22 +71,22 @@ nav {
 .nav-burger[aria-expanded="true"] span::before { transform: translateY(-6px) rotate(-90deg); width: 18px; }
 
 #mmenu {
-  position: fixed; inset: 0; z-index: 99; background: rgba(9,9,11,.97); backdrop-filter: blur(10px);
+  position: fixed; inset: 0; z-index: 99; background: rgba(10,1,26,.97); backdrop-filter: blur(10px);
   display: flex; flex-direction: column; justify-content: center; padding: 6rem 1.5rem 2rem;
   opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
 }
 #mmenu.open { opacity: 1; visibility: visible; }
 #mmenu a.mm-link {
   display: flex; align-items: baseline; gap: 14px; padding: .55rem 0;
-  font-family: 'Space Grotesk', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -1.5px;
+  font-family: 'Space Grotesk', sans-serif; font-size: 2.3rem; font-weight: 700; letter-spacing: -1.5px;
   color: #f4f4f5; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.06);
   transform: translateY(16px); opacity: 0; transition: transform .45s cubic-bezier(.16,1,.3,1), opacity .45s, color .2s;
 }
-#mmenu a.mm-link sup { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0; color: #e8ff47; }
-#mmenu a.mm-link:hover { color: #e8ff47; }
+#mmenu a.mm-link sup { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 400; letter-spacing: 0; color:var(--accent-text); }
+#mmenu a.mm-link:hover { color:var(--accent-text); }
 #mmenu.open a.mm-link { transform: none; opacity: 1; }
 #mmenu.open a.mm-link:nth-child(2) { transition-delay: .04s } #mmenu.open a.mm-link:nth-child(3) { transition-delay: .08s }
-#mmenu.open a.mm-link:nth-child(4) { transition-delay: .12s } #mmenu.open a.mm-link:nth-child(5) { transition-delay: .16s }
+#mmenu.open a.mm-link:nth-child(4) { transition-delay: .12s } #mmenu.open a.mm-link:nth-child(5) { transition-delay: .16s } #mmenu.open a.mm-link:nth-child(6) { transition-delay: .2s }
 .mm-foot { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(255,255,255,.6); }
 
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.85)} }
@@ -104,7 +105,7 @@ nav {
 .section-label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; font-weight: 500; letter-spacing: 4px;
-  color: #e8ff47; text-transform: uppercase;
+  color:var(--accent-text); text-transform: uppercase;
   margin-bottom: 1rem; opacity: .85;
 }
 
@@ -113,14 +114,14 @@ p, li { font-weight: 400; line-height: 1.8; }
 
 /* ── CARD ── */
 .card {
-  background: #111114; border: 1px solid rgba(255,255,255,.07);
+  background: #151029; border: 1px solid rgba(255,255,255,.07);
   border-radius: 14px; transition: border-color .25s, transform .25s, box-shadow .25s;
 }
 .card:hover { border-color: rgba(255,255,255,.18); box-shadow: 0 20px 60px rgba(0,0,0,.5); }
 
 /* ── FOCUS ── */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid #e8ff47; outline-offset: 3px; border-radius: 6px;
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
 }
 
 /* ── PROJECT CARDS ── */
@@ -130,7 +131,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .proj-icon {
   width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(232,255,71,.08); border: 1px solid rgba(232,255,71,.15); color: #e8ff47;
+  background: rgba(114,91,250,.08); border: 1px solid rgba(114,91,250,.15); color:var(--accent-text);
 }
 .proj-title { font-size: 17px; font-weight: 600; color: #f4f4f5; display: flex; align-items: center; gap: 8px; }
 .proj-kind { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 4px; }
@@ -139,13 +140,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .proj-tags .chip { font-size: 11px; color: rgba(255,255,255,.7); }
 .proj-link {
   display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
-  font-size: 13px; font-weight: 600; color: #e8ff47; text-decoration: none;
+  font-size: 13px; font-weight: 600; color:var(--accent-text); text-decoration: none;
   border-top: 1px solid rgba(255,255,255,.06); margin: 0 -1.5rem -1.5rem; padding: 0 1.5rem;
 }
 .proj-link svg { transition: transform .2s; }
 .proj-link:hover svg { transform: translate(2px,-2px); }
 .proj-link.muted { color: rgba(255,255,255,.55); font-weight: 500; }
-.badge-new { font-family: 'JetBrains Mono', monospace; font-size: 10px; background: rgba(232,255,71,.12); color: #e8ff47; padding: 2px 7px; border-radius: 4px; border: 1px solid rgba(232,255,71,.25); }
+.badge-new { font-family: 'JetBrains Mono', monospace; font-size: 10px; background: rgba(114,91,250,.12); color:var(--accent-text); padding: 2px 7px; border-radius: 4px; border: 1px solid rgba(114,91,250,.25); }
 .proj-media {
   position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 0;
   background: #000; cursor: pointer; overflow: hidden;
@@ -154,12 +155,314 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .proj-media:hover video { opacity: 1; }
 .proj-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  width: 56px; height: 56px; border-radius: 50%; background: #e8ff47; color: #09090b;
+  width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: #0a011a;
   display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,.4);
   transition: transform .2s;
 }
 .proj-media:hover .proj-play { transform: translate(-50%,-50%) scale(1.06); }
 .proj-media .tag { position: absolute; bottom: 10px; left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(0,0,0,.7); color: #fff; padding: 3px 8px; border-radius: 4px; }
+
+/* ── HERO LAYOUT ── */
+.hero-inner {
+  position: relative; z-index: 5; width: 100%; max-width: 1120px;
+  padding: 6rem 2rem 5rem; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 2.5rem;
+}
+.hero-photo { position: relative; width: min(300px, 78vw); }
+.hero-photo::before {
+  /* offset lime outline behind the photo */
+  content: ''; position: absolute; inset: 0; transform: translate(14px, 14px);
+  border: 1.5px solid rgba(114,91,250,.45); border-radius: 26px;
+}
+.hero-photo-frame {
+  position: relative; aspect-ratio: 4/5; border-radius: 26px; overflow: hidden;
+  background: #151029; border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 80px rgba(0,0,0,.55);
+}
+.hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+.hero-photo-frame::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 40%;
+  background: linear-gradient(to top, rgba(10,1,26,.75), transparent); pointer-events: none;
+}
+.hero-photo-badge {
+  position: absolute; left: 14px; bottom: 14px; z-index: 1;
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+  background: rgba(10,1,26,.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.12);
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #f4f4f5;
+}
+@media (min-width: 960px) {
+  .hero-inner {
+    display: grid; grid-template-columns: 1.15fr .85fr; align-items: center;
+    gap: 4.5rem; text-align: left; padding-top: 7rem;
+  }
+  .hero-photo { order: 2; width: 100%; max-width: 440px; justify-self: end; }
+  .hero-text > div { justify-content: flex-start !important; }
+  .hero-text p { margin-left: 0 !important; }
+  .hero-text h1 { font-size: clamp(4rem, 7.2vw, 6.8rem) !important; }
+}
+
+/* ── PINNED HORIZONTAL TRACKS (Skills, Projects) ── */
+.hp-sticky { padding: 7rem 0 6rem; }
+.hp-head { max-width: 1060px; margin: 0 auto 2.75rem; padding: 0 2rem; }
+.hp-progress { margin-top: 1.5rem; height: 2px; max-width: 220px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+.hp-progress span { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+.hp-viewport { perspective: 1400px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 1.5rem 0 2.5rem; }
+.hp-viewport::-webkit-scrollbar { display: none; }
+.hp-track { display: flex; align-items: stretch; gap: 1.1rem; padding: 0 max(2rem, calc((100vw - 1060px) / 2)); width: max-content; transform-style: preserve-3d; }
+.hp-track > * { flex: 0 0 auto; scroll-snap-align: center; }
+.hpin.pinned .hp-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 4.5rem 0 1.5rem; overflow: hidden; }
+.hpin.pinned .hp-viewport { overflow: visible; scroll-snap-type: none; }
+.hpin.pinned .hp-track { will-change: transform; }
+.hpin.pinned .hp-track > * { will-change: transform, opacity; transition: border-color .3s, box-shadow .3s; }
+
+/* Skills cards */
+.skills-track { counter-reset: sk; }
+.skill-card {
+  counter-increment: sk; position: relative; width: 290px; min-height: 330px; overflow: hidden;
+  padding: 1.75rem; display: flex; flex-direction: column;
+  background: linear-gradient(160deg, #1b1533 0%, #120c26 100%);
+}
+.skill-card::before {
+  content: counter(sk, decimal-leading-zero); position: absolute; top: 1.4rem; right: 1.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--fog);
+}
+.skill-title { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 600; letter-spacing: -.3px; margin: 0 0 .5rem; }
+.skill-card .pv-sk { height: 170px; margin: -1.75rem -1.75rem 1.4rem; border-radius: 13px 13px 0 0; }
+.skill-card .pv-sk .pv-3d { width: 104px; height: 104px; }
+.skill-card .pv-sk .pv-floor { width: 100px; height: 100px; margin-left: -50px; }
+.skill-card::before { z-index: 2; }
+.skills-track .skill-card.is-active { border-color: rgba(114,91,250,.55); box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(114,91,250,.25), 0 0 60px rgba(114,91,250,.18); }
+
+/* Project cards in the track; the centred one is "active" */
+.proj-track .proj { width: 360px; background: linear-gradient(170deg, #1a1431 0%, #110b24 100%); }
+.proj-track .proj.is-active { border-color: rgba(114,91,250,.55); box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(114,91,250,.25), 0 0 60px rgba(114,91,250,.18); }
+.proj-track .proj-media { aspect-ratio: auto; height: 210px; }
+
+/* ── VIDEO TESTIMONIALS ── */
+.vt-stage {
+  max-width: 1060px; margin: 0 auto 4rem; padding: 0 2rem;
+  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem; align-items: center; perspective: 1400px;
+}
+.vt {
+  position: relative; display: block; padding: 0; border: 1px solid rgba(165,150,255,.28); border-radius: 22px;
+  overflow: hidden; background: #000; cursor: pointer; color: #fff; text-align: left;
+  box-shadow: 0 30px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(114,91,250,.15), 0 0 70px rgba(114,91,250,.18);
+  transition: transform .7s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .4s;
+}
+.vt-portrait { width: 250px; aspect-ratio: 9/16; transform: rotateY(14deg) rotateX(4deg); }
+.vt-wide { aspect-ratio: 16/9; transform: rotateY(-8deg) rotateX(3deg); }
+.vt:hover, .vt:focus-visible { transform: rotateY(0) rotateX(0) scale(1.03); border-color: rgba(165,150,255,.6); box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(114,91,250,.4), 0 0 90px rgba(114,91,250,.35); }
+.vt video { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* solid fade over the bottom hides the captions burned into the videos */
+.vt-shade { position: absolute; inset: 0; background: linear-gradient(to top, #0a011a 0%, rgba(10,1,26,.97) 30%, rgba(10,1,26,.55) 45%, transparent 62%); transition: opacity .4s; }
+.vt-wide .vt-shade { background: linear-gradient(to top, #0a011a 0%, rgba(10,1,26,.96) 28%, rgba(10,1,26,.5) 48%, transparent 66%); }
+.vt-play {
+  position: absolute; right: 1.1rem; bottom: 1.1rem; width: 54px; height: 54px; border-radius: 50%; z-index: 1;
+  display: flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; padding-left: 3px;
+  box-shadow: 0 10px 30px rgba(114,91,250,.6); transition: transform .3s;
+}
+.vt-play::before, .vt-play::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(165,150,255,.7); animation: vtRing 2.4s ease-out infinite; }
+.vt-play::after { animation-delay: 1.2s; }
+@keyframes vtRing { from { transform: scale(1); opacity: .9 } to { transform: scale(1.9); opacity: 0 } }
+.vt:hover .vt-play { transform: scale(1.1); }
+.vt-meta { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.1rem 5rem 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 6px; }
+.vt-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .5px; color: #c9bfff; }
+.vt-q { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; line-height: 1.3; color: #fff; }
+.vt-wide .vt-q { font-size: 22px; max-width: 80%; }
+@media (max-width: 760px) {
+  .vt-stage { grid-template-columns: 1fr; padding: 0 1.25rem; gap: 1.25rem; }
+  .vt-portrait { width: min(260px, 70vw); justify-self: center; }
+  .vt-portrait, .vt-wide { transform: none; }
+  .vt-wide .vt-q { font-size: 17px; }
+}
+
+/* ── REVIEWS: two-row 3D marquee ── */
+.rv-wall { perspective: 1200px; display: flex; flex-direction: column; gap: 1.1rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent); }
+.rv-row { transform: rotateX(10deg) rotateZ(-1.5deg); transform-style: preserve-3d; }
+.rv-row.rv-r { transform: rotateX(10deg) rotateZ(-1.5deg) translateX(-180px); }
+.rv-strip { display: flex; align-items: flex-start; gap: 1.1rem; width: max-content; padding: .75rem 0; animation: rvScroll 70s linear infinite; }
+.rv-r .rv-strip { animation-direction: reverse; animation-duration: 80s; }
+.rv-wall:hover .rv-strip, .rv-wall:focus-within .rv-strip { animation-play-state: paused; }
+@keyframes rvScroll { to { transform: translateX(-50%); } }
+.rv-card { width: 360px; padding: 1.5rem 1.6rem; margin: 0; background: linear-gradient(165deg, #1a1431, #110b24); }
+.rv-stars { color: #ffc94d; font-size: 14px; letter-spacing: 3px; margin-bottom: .9rem; display: flex; align-items: center; gap: 8px; }
+.rv-stars span { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0; color: rgba(255,255,255,.7); }
+.rv-card blockquote { font-size: 14.5px; line-height: 1.7; color: rgba(255,255,255,.82); margin: 0 0 1.2rem; }
+.rv-card blockquote::before { content: '\201C'; } .rv-card blockquote::after { content: '\201D'; }
+.rv-card figcaption { display: flex; align-items: center; gap: 12px; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.07); }
+.rv-av { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #fff; background: linear-gradient(135deg, #8f7dff, #4a31c9); }
+.rv-who { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.rv-who strong { font-size: 14px; font-weight: 600; color: #f4f4f5; }
+.rv-who > span { font-size: 12.5px; color: rgba(255,255,255,.62); display: flex; align-items: center; gap: 7px; }
+.rv-who b { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 4px; background: rgba(114,91,250,.18); color: var(--accent-text); }
+@media (max-width: 720px) {
+  .rv-card { width: 82vw; max-width: 330px; }
+  .rv-row, .rv-row.rv-r { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-row, .rv-row.rv-r { transform: none; overflow-x: auto; }
+  .rv-strip { animation: none; padding: .75rem 2rem; }
+  .rv-card[aria-hidden="true"] { display: none; }
+}
+
+/* ── 3D PROJECT ICONS ── */
+.pv {
+  position: relative; height: 210px; display: flex; align-items: center; justify-content: center;
+  perspective: 700px; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,.06);
+  background: radial-gradient(circle at 50% 60%, rgba(114,91,250,.22), transparent 62%), #0e0820;
+}
+.pv::before { /* faint grid floor */
+  content: ''; position: absolute; inset: 45% -20% -40%; transform: perspective(300px) rotateX(62deg);
+  background-image: linear-gradient(rgba(165,150,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(165,150,255,.12) 1px, transparent 1px);
+  background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 70%);
+}
+.pv-3d {
+  position: relative; width: 128px; height: 128px; transform-style: preserve-3d;
+  transform: rotateX(16deg) rotateY(-20deg) scale(.82); transition: transform .9s cubic-bezier(.16,1,.3,1);
+}
+:is(.proj,.skill-card).is-active .pv-3d, :is(.proj,.skill-card):hover .pv-3d { transform: rotateX(6deg) rotateY(10deg) scale(1.14); }
+.pv-3d > svg, .pv-3d > .cube { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transform: translateZ(30px); filter: drop-shadow(0 18px 22px rgba(114,91,250,.45)); animation: pvFloat 4.5s ease-in-out infinite; }
+.pv-floor { position: absolute; left: 50%; bottom: -14px; width: 120px; height: 120px; margin-left: -60px; border-radius: 50%; transform: rotateX(78deg) translateZ(-34px); border: 1.5px solid rgba(165,150,255,.45); box-shadow: 0 0 40px rgba(114,91,250,.45), inset 0 0 30px rgba(114,91,250,.35); }
+.pv-plate { fill: url(#pvGrad); }
+.pv .shield, .pv .box { fill: #a596ff; }
+.pv .ln { fill: none; stroke: #d7cfff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.pv .ln.dark { stroke: #1a0f3d; }
+.pv .bar { fill: #a596ff; transform-box: fill-box; transform-origin: bottom; }
+.pv .spark { fill: #fff; }
+.pv .wheel { fill: #0e0820; stroke: #d7cfff; stroke-width: 3; }
+.pv .type { fill: #1a0f3d; }
+.pv .wave { fill: none; stroke: #a596ff; stroke-width: 2; transform-box: fill-box; transform-origin: center; opacity: 0; }
+.pv .teeth { fill: none; stroke: #8a77ff; stroke-width: 10; stroke-dasharray: 7 6.15; }
+.pv .teeth.sm { stroke-width: 7; stroke-dasharray: 5 4; }
+.pv .hole { fill: #0e0820; }
+.pv .spin, .pv .swivel, .pv .roll, .pv .pop, .pv .drop, .pv .pulse, .pv .swing { transform-box: fill-box; transform-origin: center; }
+
+/* animations: paused until the card is active or hovered */
+.pv * , .pv-3d > svg, .pv-3d > .cube { animation-play-state: paused !important; }
+:is(.proj,.skill-card).is-active .pv *, :is(.proj,.skill-card):hover .pv *, :is(.proj,.skill-card).is-active .pv-3d > svg, :is(.proj,.skill-card):hover .pv-3d > svg, :is(.proj,.skill-card).is-active .pv-3d > .cube, :is(.proj,.skill-card):hover .pv-3d > .cube { animation-play-state: running !important; }
+@keyframes pvFloat { 0%,100% { transform: translateZ(30px) translateY(0) } 50% { transform: translateZ(30px) translateY(-8px) } }
+.pv .bar { animation: pvBar 2.4s cubic-bezier(.16,1,.3,1) infinite; }
+.pv .b2 { animation-delay: .15s } .pv .b3 { animation-delay: .3s } .pv .b4 { animation-delay: .45s }
+@keyframes pvBar { 0%,100% { transform: scaleY(.35) } 45%,70% { transform: scaleY(1) } }
+.pv .draw { stroke-dasharray: 120; animation: pvDraw 2.4s ease-in-out infinite; }
+@keyframes pvDraw { 0% { stroke-dashoffset: 120 } 50%,80% { stroke-dashoffset: 0 } 100% { stroke-dashoffset: -120 } }
+.pv .spark { animation: pvBlink 2.4s ease-in-out infinite; }
+@keyframes pvBlink { 0%,40% { opacity: 0 } 55%,80% { opacity: 1 } 100% { opacity: 0 } }
+.pv .pulse { animation: pvPulse 2.2s ease-in-out infinite; }
+@keyframes pvPulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.1) } }
+.pv .roll { animation: pvRoll 3s ease-in-out infinite; }
+@keyframes pvRoll { 0%,100% { transform: translateX(-4px) } 50% { transform: translateX(6px) } }
+.pv .drop { animation: pvDrop 3s cubic-bezier(.5,0,.5,1.4) infinite; } .pv .d2 { animation-delay: .4s }
+@keyframes pvDrop { 0% { transform: translateY(-40px); opacity: 0 } 25%,85% { transform: translateY(0); opacity: 1 } 100% { transform: translateY(0); opacity: 0 } }
+.pv .pop { animation: pvPop 3.2s ease-in-out infinite; } .pv .p2 { animation-delay: 1.6s }
+@keyframes pvPop { 0%,100% { transform: scale(.92) } 20%,55% { transform: scale(1.04) } }
+.pv .type { animation: pvType 1.2s ease-in-out infinite; } .pv .t2 { animation-delay: .2s } .pv .t3 { animation-delay: .4s }
+@keyframes pvType { 0%,100% { opacity: .35; transform: translateY(0) } 50% { opacity: 1; transform: translateY(-3px) } }
+.pv .wave { animation: pvWave 2.4s ease-out infinite; } .pv .w2 { animation-delay: .8s } .pv .w3 { animation-delay: 1.6s }
+@keyframes pvWave { 0% { transform: scale(1); opacity: .9 } 100% { transform: scale(2.3); opacity: 0 } }
+.pv .eq { animation: pvEq .6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes pvEq { to { transform: scaleY(.4) } }
+.pv .spin { animation: pvSpin 6s linear infinite; } .pv .spin.rev { animation-direction: reverse; animation-duration: 4s; }
+@keyframes pvSpin { to { transform: rotate(360deg) } }
+.pv .swing { animation: pvSwing 2s ease-in-out infinite; transform-origin: 20% 80%; }
+@keyframes pvSwing { 0%,100% { transform: rotate(-8deg) } 50% { transform: rotate(10deg) } }
+.pv .swivel { animation: pvSwivel 3.6s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes pvSwivel { 0%,100% { transform: translateX(-6px) skewX(4deg) } 50% { transform: translateX(6px) skewX(-4deg) } }
+/* skill icon animations */
+.pv .ln.thin { stroke-width: 2; stroke: rgba(215,207,255,.6); }
+.pv .caret { fill: #fff; animation: pvBlink 1s steps(1) infinite; }
+.pv .orbit { transform-box: view-box; transform-origin: 60px 60px; animation: pvSpin 9s linear infinite; }
+.pv .plug { transform-box: fill-box; animation: pvPlug 2.4s cubic-bezier(.7,0,.3,1) infinite; }
+@keyframes pvPlug { 0%,100% { transform: translateX(-12px) } 45%,75% { transform: translateX(0) } }
+.pv .app { fill: #a596ff; transform-box: fill-box; transform-origin: center; animation: pvApp 3s ease-in-out infinite; }
+.pv .a2 { animation-delay: .15s; fill: #8a77ff } .pv .a3 { animation-delay: .3s; fill: #c9bfff } .pv .a4 { animation-delay: .45s } .pv .a5 { animation-delay: .6s; fill: #8a77ff } .pv .a6 { animation-delay: .75s; fill: #c9bfff }
+@keyframes pvApp { 0%,100% { transform: scale(.4); opacity: .3 } 25%,80% { transform: scale(1); opacity: 1 } }
+.pv .stack { transform-box: view-box; animation: pvStack 3s ease-in-out infinite; }
+.pv .s1 { animation-delay: 0s } .pv .s2 { animation-delay: .15s } .pv .s3 { animation-delay: .3s }
+@keyframes pvStack { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
+.pv .led { fill: #6dffa8; animation: pvBlink 1.4s steps(1) infinite; } .pv .l2 { animation-delay: .45s } .pv .l3 { animation-delay: .9s }
+.pv .ring-phone { fill: #1a0f3d; stroke: #1a0f3d; stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: pvRingPh .5s ease-in-out infinite alternate; }
+@keyframes pvRingPh { from { transform: rotate(-10deg) } to { transform: rotate(10deg) } }
+.pv .star { fill: #fff; transform-box: fill-box; transform-origin: center; animation: pvStar 2s ease-in-out infinite; }
+.pv .st2 { animation-delay: .7s } .pv .st3 { animation-delay: 1.3s }
+@keyframes pvStar { 0%,100% { transform: scale(.3) rotate(0); opacity: .3 } 50% { transform: scale(1.15) rotate(45deg); opacity: 1 } }
+.pv .coin { transform-box: fill-box; transform-origin: center; animation: pvCoin 3.2s cubic-bezier(.5,0,.5,1) infinite; }
+@keyframes pvCoin { 0% { transform: rotateY(0) } 100% { transform: rotateY(360deg) } }
+
+/* Nómada: a real 3D wireframe cube */
+.pv .cube { filter: none !important; transform-style: preserve-3d; animation: pvCube 9s linear infinite !important; width: 84px !important; height: 84px !important; inset: 22px !important; }
+:is(.proj,.skill-card):not(.is-active):not(:hover) .pv .cube { animation-play-state: paused !important; }
+.pv .cf { position: absolute; inset: 0; border: 2px solid #a596ff; background: rgba(114,91,250,.14); box-shadow: inset 0 0 22px rgba(114,91,250,.45); }
+.pv .f1 { transform: translateZ(42px) } .pv .f2 { transform: rotateY(180deg) translateZ(42px) } .pv .f3 { transform: rotateY(90deg) translateZ(42px) }
+.pv .f4 { transform: rotateY(-90deg) translateZ(42px) } .pv .f5 { transform: rotateX(90deg) translateZ(42px) } .pv .f6 { transform: rotateX(-90deg) translateZ(42px) }
+@keyframes pvCube { from { transform: translateZ(30px) rotateX(-22deg) rotateY(0) } to { transform: translateZ(30px) rotateX(-22deg) rotateY(360deg) } }
+
+@media (max-width: 720px) {
+  .proj-track .proj { width: 84vw; max-width: 340px; }
+  .skill-card { width: 78vw; max-width: 290px; }
+}
+/* ── 3D CARD TILT (mouse) ── */
+@media (hover: hover) and (pointer: fine) {
+  .card.tilt { transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateZ(0); transition: border-color .25s, box-shadow .25s, transform .2s ease-out; }
+  .card.tilt::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%), rgba(165,150,255,.12), transparent 45%);
+  }
+  .card.tilt:hover::after { opacity: 1; }
+}
+.card { position: relative; }
+
+/* ── 3D SCROLL REVEAL ── */
+.rv { opacity: 0; transform: perspective(1000px) rotateX(16deg) translateY(46px) scale(.97); transform-origin: 50% 0; }
+.rv.rv-in { opacity: 1; transform: none; transition: opacity .8s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); transition-delay: var(--rd, 0ms); }
+
+/* ── PROCESS WAVEFORM ── */
+.wave { position: relative; max-width: 1240px; margin: 3rem auto 0; height: 440px; perspective: 1100px; }
+.wave-stage {
+  position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: space-between;
+  transform: rotateX(14deg); transform-origin: 50% 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.wave-bar {
+  width: 1.5px; height: var(--bh); border-radius: 1px; transform-origin: bottom;
+  background: linear-gradient(to top, rgba(159,161,174,.15), rgba(165,150,255,.75));
+  transform: scaleY(0); transition: transform .9s cubic-bezier(.16,1,.3,1), background .3s;
+}
+.wave-bar.peak { width: 2px; background: linear-gradient(to top, rgba(114,91,250,.2), #a596ff); }
+.wave.in .wave-bar { transform: scaleY(calc(var(--s, 1))); }
+.wave.idle .wave-bar { animation: barFloat 3.6s ease-in-out infinite; animation-delay: var(--d); transition: transform .35s ease-out; }
+.wave.idle .wave-bar.hot { animation: none; }
+@keyframes barFloat { 0%,100% { transform: scaleY(var(--s,1)) } 50% { transform: scaleY(calc(var(--s,1) * .82)) } }
+.wave-steps { list-style: none; }
+.wave-steps li {
+  position: absolute; left: var(--x); bottom: var(--h); padding-left: 12px;
+  display: flex; flex-direction: column; gap: 4px; opacity: 0; transform: translateY(10px);
+  transition: opacity .6s, transform .6s; transition-delay: .5s;
+}
+.wave.in .wave-steps li { opacity: 1; transform: none; }
+.wave-steps li:nth-child(2) { transition-delay: .65s } .wave-steps li:nth-child(3) { transition-delay: .8s } .wave-steps li:nth-child(4) { transition-delay: .95s }
+.ws-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--fog); }
+.ws-t { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; color: #f4f4f5; line-height: 1.25; max-width: 170px; }
+@media (max-width: 760px) {
+  .wave { height: auto; margin-top: 2rem; }
+  .wave-stage { position: relative; height: 200px; transform: rotateX(10deg); }
+  .wave-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1rem; padding: 0 1.25rem; margin-top: 1.75rem; }
+  .wave-steps li { position: static; padding-left: 12px; border-left: 2px solid var(--accent); }
+  .ws-t { font-size: 15px; }
+}
+
+.founder-pill {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 16px;
+  border-radius: 999px; border: 1px solid rgba(114,91,250,.28); background: rgba(114,91,250,.06);
+  font-size: 13.5px; color:var(--accent-text); text-decoration: none; transition: background .2s, border-color .2s;
+}
+.founder-pill strong { font-weight: 700; color: #f4f4f5; }
+.founder-pill:hover { background: rgba(114,91,250,.12); border-color: rgba(114,91,250,.5); }
+.founder-pill svg { transition: transform .2s; }
+.founder-pill:hover svg { transform: translate(2px,-2px); }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
@@ -179,7 +482,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 /* ── BTN ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-  background: #e8ff47; color: #09090b; padding: 13px 28px;
+  background: var(--accent); color: #0a011a; padding: 13px 28px;
   border-radius: 10px; font-size: 14px; font-weight: 700;
   text-decoration: none; transition: opacity .2s, transform .15s;
   border: none; cursor: pointer;
@@ -196,8 +499,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .btn-ghost:hover { border-color: rgba(255,255,255,.3); color: #fff; transform: translateY(-1px); }
 
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #09090b; }
-::-webkit-scrollbar-thumb { background: #e8ff47; border-radius: 2px; }
+::-webkit-scrollbar-track { background: #0a011a; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
 /* VIDEO MODAL */
 #vmodal {
@@ -223,8 +526,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .stats-grid > div:nth-child(1), .stats-grid > div:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.06) !important; }
   .about-grid, .contact-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
 }
-@media (max-width: 1080px) { .nav-clock { display: none; } }
-@media (max-width: 860px) {
+@media (max-width: 1240px) { .nav-clock { display: none; } }
+.logo, .nav-cta, .nav-links a { white-space: nowrap; }
+@media (max-width: 920px) {
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: inline-flex; }
 }
@@ -246,6 +550,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="pvGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8f7dff"/><stop offset="1" stop-color="#4a31c9"/></linearGradient></defs></svg>
 
 
 <div id="vmodal" role="dialog" aria-modal="true" aria-label="Project demo video">
@@ -257,15 +562,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 <header class="nav-wrap" id="navwrap">
 <nav id="nav" aria-label="Main">
   <a href="#" class="logo" aria-label="Mohammed Bilal, back to top" style="text-decoration:none;display:flex;align-items:center;min-height:44px;">
-    <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#f4f4f5;letter-spacing:-.4px;">Mohammed Bilal<span style="color:#e8ff47;">.</span></span>
+    <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#f4f4f5;letter-spacing:-.4px;">Mohammed Bilal<span style="color:var(--accent-text);">.</span></span>
   </a>
   <div class="nav-links" id="navlinks">
     <span class="nav-ind" id="navind" aria-hidden="true"></span>
     <a href="#about"><sup>01</sup>About</a>
     <a href="#skills"><sup>02</sup>Skills</a>
     <a href="#projects"><sup>03</sup>Work</a>
-    <a href="#reviews"><sup>04</sup>Reviews</a>
-    <a href="#contact"><sup>05</sup>Contact</a>
+    <a href="#process"><sup>04</sup>Process</a>
+    <a href="#reviews"><sup>05</sup>Reviews</a>
+    <a href="#contact"><sup>06</sup>Contact</a>
   </div>
   <div class="nav-right">
     <div class="nav-clock"><span class="avail-dot" aria-hidden="true"></span><span>Open to work · Riyadh <time class="clock">--:--</time></span></div>
@@ -279,45 +585,55 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   <a class="mm-link" href="#about"><sup>01</sup>About</a>
   <a class="mm-link" href="#skills"><sup>02</sup>Skills</a>
   <a class="mm-link" href="#projects"><sup>03</sup>Work</a>
-  <a class="mm-link" href="#reviews"><sup>04</sup>Reviews</a>
-  <a class="mm-link" href="#contact"><sup>05</sup>Contact</a>
+  <a class="mm-link" href="#process"><sup>04</sup>Process</a>
+  <a class="mm-link" href="#reviews"><sup>05</sup>Reviews</a>
+  <a class="mm-link" href="#contact"><sup>06</sup>Contact</a>
   <div class="mm-foot"><span style="display:flex;align-items:center;gap:8px;"><span class="avail-dot" aria-hidden="true"></span>Open to work</span><span>Riyadh <time class="clock">--:--</time></span></div>
 </div>
 
 <!-- ═══ HERO ═══ -->
 <section style="position:relative; min-height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden; padding-top:64px;">
   <canvas id="bg3d" style="position:absolute;inset:0;width:100%;height:100%;opacity:.55;"></canvas>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(232,255,71,.04) 0%, transparent 70%);pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 70% 35%, rgba(114,91,250,.22) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 15% 80%, rgba(40,36,63,.6) 0%, transparent 70%);pointer-events:none;"></div>
 
-  <div style="position:relative;z-index:5;max-width:900px;padding:5rem 2rem 6rem;text-align:center;">
+  <div class="hero-inner">
 
-    <!-- Avatar -->
-    <div style="display:inline-block;position:relative;margin-bottom:2.5rem;" class="fade-up fd1">
-      <div style="width:112px;height:112px;border-radius:50%;background:#e8ff47;padding:2.5px;">
-        <img src="profile.jpg" alt="Portrait of Mohammed Bilal" width="107" height="107"
-          style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block;"
-          onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;background:#1a1a1e;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#e8ff47;\'>MB</div>'">
+    <!-- Photo -->
+    <div class="hero-photo fade-up fd1">
+      <div class="hero-photo-frame">
+        <img src="profile.jpg" alt="Portrait of Mohammed Bilal" width="1079" height="1079" fetchpriority="high">
+        <div class="hero-photo-badge"><span class="avail-dot" aria-hidden="true"></span>Open to work</div>
       </div>
-      <!-- status dot -->
-      <div style="position:absolute;bottom:4px;right:4px;width:16px;height:16px;background:#22c55e;border-radius:50%;border:2.5px solid #09090b;" aria-hidden="true"></div>
     </div>
+
+    <div class="hero-text">
 
     <!-- Tag -->
     <div class="fade-up fd2" style="margin-bottom:1.5rem;">
       <span style="display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.72);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;letter-spacing:1px;">
-        <span style="color:#e8ff47;" aria-hidden="true">★</span> 5-STAR RATED BY EVERY CLIENT · SAUDI ARABIA
+        <span style="color:var(--accent-text);" aria-hidden="true">★</span> 5-STAR RATED BY EVERY CLIENT · SAUDI ARABIA
       </span>
     </div>
 
     <!-- Name -->
     <h1 class="fade-up fd3 font-display" style="font-size:clamp(3.8rem,10vw,7.5rem);font-weight:700;line-height:.95;letter-spacing:-3.5px;margin-bottom:1.4rem;color:#f4f4f5;">
       Mohammed<br>
-      <span style="color:#e8ff47;">Bilal</span>
+      <span style="color:var(--accent);">Bilal</span>
     </h1>
 
     <!-- Typewriter -->
     <div class="fade-up fd4" style="font-family:'JetBrains Mono',monospace;font-size:.875rem;color:rgba(255,255,255,.65);margin-bottom:1.5rem;min-height:1.6rem;display:flex;align-items:center;justify-content:center;gap:4px;letter-spacing:.5px;">
-      <span id="tw">AI Developer</span><span id="tw-caret" style="color:#e8ff47;animation:pulse 1s step-end infinite;font-size:1.1rem;" aria-hidden="true">|</span>
+      <span id="tw">AI Developer</span><span id="tw-caret" style="color:var(--accent-text);animation:pulse 1s step-end infinite;font-size:1.1rem;" aria-hidden="true">|</span>
+    </div>
+
+    <!-- Founder -->
+    <div class="fade-up fd4" style="margin-bottom:1.5rem;">
+      <a href="https://frackcreations.com/" target="_blank" rel="noopener" class="founder-pill">
+        <span style="color:rgba(255,255,255,.6);">Founder of</span>
+        <strong>Frack Creations</strong>
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        <span class="sr-only">(opens in a new tab)</span>
+      </a>
     </div>
 
     <!-- Desc -->
@@ -333,29 +649,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     </div>
 
     <!-- Stack pills -->
-    <div class="fade-up fd5" style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;">
+    <div class="fade-up fd5 hero-pills" style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;">
       <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">AI Agents</span><span class="chip">Web3</span><span class="chip">Solidity</span><span class="chip">WhatsApp API</span><span class="chip">Gemini</span><span class="chip">Node.js</span><span class="chip">LLMs</span>
     </div>
+
+    </div><!-- /hero-text -->
   </div>
 </section>
 
 <!-- ═══ STATS ═══ -->
-<div style="border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:#09090b;">
+<div style="border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);background:#0a011a;">
   <div class="stats-grid" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);">
     <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
-      <div id="s1" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">20+</div>
+      <div id="s1" style="font-size:2.2rem;font-weight:800;color:var(--accent-text);font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">20+</div>
       <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">PROJECTS</div>
     </div>
     <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
-      <div style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">5.0★</div>
+      <div style="font-size:2.2rem;font-weight:800;color:var(--accent-text);font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">5.0★</div>
       <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">RATING</div>
     </div>
     <div style="padding:2rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.06);">
-      <div id="s3" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">3+</div>
+      <div id="s3" style="font-size:2.2rem;font-weight:800;color:var(--accent-text);font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">3+</div>
       <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">YRS EXP</div>
     </div>
     <div style="padding:2rem 1rem;text-align:center;">
-      <div id="s4" style="font-size:2.2rem;font-weight:800;color:#e8ff47;font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">4</div>
+      <div id="s4" style="font-size:2.2rem;font-weight:800;color:var(--accent-text);font-family:'JetBrains Mono',monospace;letter-spacing:-2px;">4</div>
       <div style="font-size:11px;color:rgba(255,255,255,.62);margin-top:5px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;">CONTINENTS</div>
     </div>
   </div>
@@ -369,14 +687,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;">
     <div>
       <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:1.5rem;font-weight:300;">
-        I'm Mohammed, an AI Developer and Full-Stack Engineer based in Saudi Arabia. I specialise in building intelligent automation systems, AI chatbots, and modern web applications that actually solve problems.
+        I'm Mohammed, an AI Developer and Full-Stack Engineer based in Saudi Arabia, and the founder of <a href="https://frackcreations.com/" target="_blank" rel="noopener" style="color:var(--accent-text);text-decoration:underline;text-underline-offset:3px;">Frack Creations</a>, a studio building web apps, SaaS, e-commerce and AI chatbots for startups worldwide. I specialise in building intelligent automation systems, AI chatbots, and modern web applications that actually solve problems.
       </p>
       <p style="font-size:1rem;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300;">
         With 3+ years of freelancing across 4 continents, I've delivered 20+ real-world projects spanning AI, full-stack, and Web3/crypto. I move fast using cutting-edge AI tools: Claude, Cursor, Gemini and OpenAI, and I don't stop until the client is happy.
       </p>
     </div>
-    <div style="background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;">
-      <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:7px;background:#0d0d10;">
+    <div style="background:#151029;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;">
+      <div style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:7px;background:#100a22;">
         <div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div>
         <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
         <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;"></div>
@@ -384,12 +702,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       </div>
       <div style="padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2;color:rgba(255,255,255,.55);">
         <span style="color:rgba(255,255,255,.2);">{</span><br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"ai_tools"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Claude", "Gemini", "GPT-4"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"frontend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"React", "Next.js", "Tailwind"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"backend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Node.js", "Python", "APIs"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"speciality"</span>: <span style="color:rgba(255,255,255,.55);">"AI Agents + Web3 + Bots"</span>,<br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"location"</span>: <span style="color:rgba(255,255,255,.55);">"Saudi Arabia 🇸🇦"</span>,<br>
-        &nbsp;&nbsp;<span style="color:#e8ff47;">"status"</span>: <span style="color:#22c55e;">"open_to_work"</span><br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"ai_tools"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Claude", "Gemini", "GPT-4"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"frontend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"React", "Next.js", "Tailwind"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"backend"</span>: <span style="color:rgba(255,255,255,.3);">[</span><span style="color:rgba(255,255,255,.55);">"Node.js", "Python", "APIs"</span><span style="color:rgba(255,255,255,.3);">]</span>,<br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"speciality"</span>: <span style="color:rgba(255,255,255,.55);">"AI Agents + Web3 + Bots"</span>,<br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"location"</span>: <span style="color:rgba(255,255,255,.55);">"Saudi Arabia 🇸🇦"</span>,<br>
+        &nbsp;&nbsp;<span style="color:var(--accent-text);">"status"</span>: <span style="color:#22c55e;">"open_to_work"</span><br>
         <span style="color:rgba(255,255,255,.2);">}</span>
       </div>
     </div>
@@ -397,84 +715,88 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 </section>
 
 <!-- ═══ SKILLS ═══ -->
-<section id="skills" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
-  <div style="max-width:1060px;margin:0 auto;">
+<section id="skills" class="hpin" style="border-top:1px solid rgba(255,255,255,.06);">
+  <div class="hp-sticky">
+  <div class="hp-head">
     <div class="section-label">02 / Skills</div>
-    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">What I do best.</h2>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;">
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Web Development</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">React, Next.js, TypeScript, Tailwind CSS</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><circle cx="12" cy="16" r="1" fill="#e8ff47" stroke="none"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Agents & Automation</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Intelligent automation systems with LLMs</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">WhatsApp Chatbots</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">AI-powered bots with Gemini API + dashboard</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M22 2 12 12"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Integration</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">OpenAI, Gemini, ElevenLabs, LLM pipelines</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Mobile Apps</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Cross-platform mobile development</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Backend & APIs</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Node.js, REST APIs, databases, cloud</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Voice Agents</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Voice AI calling agents with NLP</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">AI Tools Expert</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Cursor, Claude, Anti Gravity, Gemini</div>
-      </div>
-
-      <div class="card" style="padding:1.5rem;">
-        <div style="margin-bottom:1rem;"><svg width="20" height="20" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:.4rem;">Web3 & Crypto</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.6;">Smart contracts, DEX, DeFi, Solidity, dApps</div>
-      </div>
-    </div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:0;">What I do best.</h2>
+    <div class="hp-progress" aria-hidden="true"><span></span></div>
   </div>
+
+    <div class="hp-viewport"><div class="hp-track skills-track">
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="pv-plate" x="10" y="20" width="100" height="78" rx="10"/><path class="ln dark" d="M10 36h100"/><circle class="type" cx="22" cy="28" r="3"/><circle class="type t2" cx="32" cy="28" r="3"/><circle class="type t3" cx="42" cy="28" r="3"/><path class="ln draw" d="M40 56l-12 11 12 11M80 56l12 11-12 11M66 52l-12 32"/><rect class="caret" x="86" y="80" width="3" height="10" rx="1"/></svg></div></div>
+        <div class="skill-title">Web Development</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">React, Next.js, TypeScript, Tailwind CSS</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><g class="orbit"><path class="ln thin" d="M60 60L60 16M60 60L98 82M60 60L22 82"/><circle class="shield" cx="60" cy="16" r="8"/><circle class="shield" cx="98" cy="82" r="8"/><circle class="shield" cx="22" cy="82" r="8"/></g><rect class="pv-plate pulse" x="42" y="42" width="36" height="36" rx="8"/><path class="ln dark" d="M52 56h16M52 64h10"/></svg></div></div>
+        <div class="skill-title">AI Agents & Automation</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Intelligent automation systems with LLMs</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="pv-plate" x="34" y="8" width="52" height="104" rx="12"/><rect class="hole" x="40" y="20" width="40" height="80" rx="5"/><g class="pop p1"><rect class="shield" x="44" y="30" width="26" height="12" rx="6"/></g><g class="pop p2"><rect class="box" x="50" y="48" width="26" height="12" rx="6"/></g><g class="pop p1"><rect class="shield" x="44" y="66" width="20" height="12" rx="6"/></g><circle class="type t1" cx="52" cy="88" r="2.5"/><circle class="type t2" cx="60" cy="88" r="2.5"/><circle class="type t3" cx="68" cy="88" r="2.5"/></svg></div></div>
+        <div class="skill-title">WhatsApp Chatbots</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">AI-powered bots with Gemini API + dashboard</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="pv-plate" x="66" y="34" width="36" height="52" rx="10"/><path class="ln dark" d="M76 52v16M92 52v16"/><g class="plug"><rect class="shield" x="26" y="42" width="30" height="36" rx="8"/><path class="ln" d="M56 52h10M56 68h10M26 60H8"/></g><circle class="spark" cx="64" cy="60" r="4"/></svg></div></div>
+        <div class="skill-title">AI Integration</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">OpenAI, Gemini, ElevenLabs, LLM pipelines</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="pv-plate" x="32" y="6" width="56" height="108" rx="13"/><rect class="hole" x="38" y="18" width="44" height="84" rx="5"/><rect class="app a1" x="43" y="26" width="14" height="14" rx="4"/><rect class="app a2" x="63" y="26" width="14" height="14" rx="4"/><rect class="app a3" x="43" y="46" width="14" height="14" rx="4"/><rect class="app a4" x="63" y="46" width="14" height="14" rx="4"/><rect class="app a5" x="43" y="66" width="14" height="14" rx="4"/><rect class="app a6" x="63" y="66" width="14" height="14" rx="4"/></svg></div></div>
+        <div class="skill-title">Mobile Apps</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Cross-platform mobile development</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><g class="stack s3"><ellipse class="pv-plate" cx="60" cy="84" rx="38" ry="12"/><rect class="pv-plate" x="22" y="72" width="76" height="12"/><circle class="led l3" cx="84" cy="80" r="3"/></g><g class="stack s2"><ellipse class="pv-plate" cx="60" cy="62" rx="38" ry="12"/><rect class="pv-plate" x="22" y="50" width="76" height="12"/><circle class="led l2" cx="84" cy="58" r="3"/></g><g class="stack s1"><ellipse class="pv-plate" cx="60" cy="40" rx="38" ry="12"/><rect class="pv-plate" x="22" y="28" width="76" height="12"/><ellipse class="shield" cx="60" cy="28" rx="38" ry="12"/><circle class="led" cx="84" cy="36" r="3"/></g></svg></div></div>
+        <div class="skill-title">Backend & APIs</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Node.js, REST APIs, databases, cloud</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><circle class="wave w1" cx="60" cy="60" r="22"/><circle class="wave w2" cx="60" cy="60" r="22"/><circle class="wave w3" cx="60" cy="60" r="22"/><circle class="pv-plate" cx="60" cy="60" r="24"/><path class="ln ring-phone" d="M50 51c2 9 8 15 17 18l4-4-6-4-3 2c-3-2-5-4-7-7l2-3-4-6z"/></svg></div></div>
+        <div class="skill-title">AI Voice Agents</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Voice AI calling agents with NLP</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><path class="pv-plate pulse" d="M66 10L28 66h26l-6 44 40-58H62z"/><path class="star st1" d="M24 22l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path class="star st2" d="M96 76l2.5 6.5 6.5 2.5-6.5 2.5-2.5 6.5-2.5-6.5-6.5-2.5 6.5-2.5z"/><path class="star st3" d="M94 14l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg></div></div>
+        <div class="skill-title">AI Tools Expert</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Cursor, Claude, Anti Gravity, Gemini</div>
+      </div>
+
+      <div class="card skill-card">
+        <div class="pv pv-sk" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><g class="coin"><circle class="pv-plate" cx="60" cy="60" r="40"/><circle class="ln" cx="60" cy="60" r="32"/><path class="shield" d="M60 30l18 30-18 11-18-11z"/><path class="box" d="M60 75l18-11-18 26-18-26z"/></g></svg></div></div>
+        <div class="skill-title">Web3 & Crypto</div>
+        <div style="font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.6;">Smart contracts, DEX, DeFi, Solidity, dApps</div>
+      </div>
+    </div></div><!-- /track /viewport -->
+  </div><!-- /sticky -->
 </section>
 
 <!-- ═══ PROJECTS ═══ -->
-<section id="projects" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
-  <div style="max-width:1060px;margin:0 auto;">
+<section id="projects" class="hpin" style="border-top:1px solid rgba(255,255,255,.06);">
+  <div class="hp-sticky">
+  <div class="hp-head">
     <div class="section-label">03 / Work</div>
-    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:3.5rem;">Selected projects.</h2>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:0;">Selected projects.</h2>
+    <div class="hp-progress" aria-hidden="true"><span></span></div>
+  </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;align-items:stretch;">
+    <div class="hp-viewport"><div class="hp-track proj-track">
 
       <!-- YoyoCRM: newest, highlighted -->
-      <article class="card proj" style="border-color:rgba(232,255,71,.22);">
+      <article class="card proj" style="border-color:rgba(114,91,250,.22);">
+        <div class="pv pv-yoyocrm" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="pv-plate" x="16" y="16" width="88" height="88" rx="16"/><rect class="bar b1" x="30" y="64" width="11" height="26" rx="3"/><rect class="bar b2" x="46" y="52" width="11" height="38" rx="3"/><rect class="bar b3" x="62" y="42" width="11" height="48" rx="3"/><rect class="bar b4" x="78" y="32" width="11" height="58" rx="3"/><polyline class="ln draw" points="30,56 50,42 66,47 88,22"/><circle class="spark" cx="88" cy="22" r="4"/></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">AI CRM · SaaS</div>
             <h3 class="proj-title">YoyoCRM <span class="badge-new">NEW</span></h3>
@@ -487,10 +809,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- Fortva -->
       <article class="card proj">
+        <div class="pv pv-fortva" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><path class="pv-plate" d="M32 14h38l20 20v70a4 4 0 0 1-4 4H32a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z"/><path class="ln" d="M70 14v20h20M40 48h32M40 58h32M40 68h18"/><g class="pulse"><path class="shield" d="M82 66l16 6v12c0 10-7 17-16 20-9-3-16-10-16-20V72z"/><path class="ln draw dark" d="M75 85l5 5 9-9"/></g></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">Document platform</div>
             <h3 class="proj-title">Fortva</h3>
@@ -503,10 +823,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- GoodPappa -->
       <article class="card proj">
+        <div class="pv pv-goodpappa" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><rect class="box drop d1" x="46" y="44" width="16" height="16" rx="3"/><rect class="box drop d2" x="66" y="38" width="16" height="22" rx="3"/><g class="roll"><path class="pv-plate" d="M36 46h62l-8 28H42z"/><path class="ln" d="M14 30h14l12 46h50"/><circle class="wheel" cx="46" cy="90" r="7"/><circle class="wheel" cx="84" cy="90" r="7"/></g></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">E-commerce</div>
             <h3 class="proj-title">GoodPappa</h3>
@@ -519,10 +837,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- Orange County -->
       <article class="card proj">
+        <div class="pv pv-orange-county-rehab" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><g class="pop p1"><path class="pv-plate" d="M20 20h56a9 9 0 0 1 9 9v22a9 9 0 0 1-9 9H44l-14 11V60H20a9 9 0 0 1-9-9V29a9 9 0 0 1 9-9z"/><circle class="type t1" cx="34" cy="40" r="3.5"/><circle class="type t2" cx="48" cy="40" r="3.5"/><circle class="type t3" cx="62" cy="40" r="3.5"/></g><g class="pop p2"><path class="shield" d="M52 66h48a9 9 0 0 1 9 9v14a9 9 0 0 1-9 9h-4v10l-12-10H52a9 9 0 0 1-9-9V75a9 9 0 0 1 9-9z"/><path class="ln dark" d="M55 79h40M55 87h24"/></g></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">Healthcare chatbot</div>
             <h3 class="proj-title">Orange County Rehab</h3>
@@ -534,11 +850,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
       </article>
 
       <!-- Wasil -->
-      <article class="card proj" style="border-color:rgba(232,255,71,.22);">
+      <article class="card proj" style="border-color:rgba(114,91,250,.22);">
+        <div class="pv pv-wasil" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><circle class="wave w1" cx="60" cy="50" r="20"/><circle class="wave w2" cx="60" cy="50" r="20"/><circle class="wave w3" cx="60" cy="50" r="20"/><rect class="pv-plate" x="48" y="20" width="24" height="46" rx="12"/><path class="ln" d="M38 52a22 22 0 0 0 44 0M60 74v16M46 96h28"/><path class="ln eq" d="M56 34v12M64 30v20"/></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">AI SaaS · Gulf market</div>
             <h3 class="proj-title">Wasil <span class="badge-new">NEW</span></h3>
@@ -551,10 +865,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- Excellent Electronics CRM -->
       <article class="card proj">
+        <div class="pv pv-excellent-electronics" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><g class="spin"><circle class="teeth" cx="50" cy="62" r="27"/><circle class="pv-plate" cx="50" cy="62" r="20"/><circle class="hole" cx="50" cy="62" r="7"/></g><g class="spin rev"><circle class="teeth sm" cx="90" cy="30" r="14"/><circle class="shield" cx="90" cy="30" r="9"/><circle class="hole" cx="90" cy="30" r="3.5"/></g><path class="ln swing" d="M78 104l16-16m6-12a9 9 0 1 1-12 12"/></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">Full CRM · 2 apps</div>
             <h3 class="proj-title">Excellent Electronics</h3>
@@ -567,10 +879,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- Maktab Elite -->
       <article class="card proj">
+        <div class="pv pv-maktab-elite" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><svg viewBox="0 0 120 120"><path class="pv-plate" d="M10 50l50-14 50 14-50 14z"/><path class="ln" d="M14 52v28M106 52v28M60 64v30"/><path class="ln" d="M66 44V28l20-5v16"/><g class="swivel"><rect class="shield" x="44" y="64" width="32" height="24" rx="8"/><path class="ln" d="M40 92h40M60 92v12M46 112l14-6 14 6"/></g></svg></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 10h18M5 10v10M19 10v10M8 10V6h8v4"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">E-commerce · Arabic</div>
             <h3 class="proj-title">Maktab Elite</h3>
@@ -583,10 +893,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
       <!-- Nomada -->
       <article class="card proj">
+        <div class="pv pv-n-mada-comunicaci-n" aria-hidden="true"><div class="pv-3d"><span class="pv-floor"></span><div class="cube"><i class="cf f1"></i><i class="cf f2"></i><i class="cf f3"></i><i class="cf f4"></i><i class="cf f5"></i><i class="cf f6"></i></div></div></div>
         <div class="proj-body">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-          </div>
           <div>
             <div class="proj-kind">3D landing page</div>
             <h3 class="proj-title">Nómada Comunicación</h3>
@@ -648,86 +956,85 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         </div>
       </article>
 
-    </div>
+    </div></div><!-- /track /viewport -->
+  </div><!-- /sticky -->
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section id="process" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem 6rem;overflow:hidden;">
+  <div style="max-width:1060px;margin:0 auto;">
+    <div class="section-label">04 / Process</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:.75rem;">How I work.</h2>
+    <p style="font-size:1rem;color:rgba(255,255,255,.65);max-width:520px;">Four steps from first call to launch. Every project, big or small, goes through the same rhythm.</p>
+  </div>
+
+  <div class="wave" id="wave">
+    <div class="wave-stage" id="waveStage" aria-hidden="true"></div>
+    <ol class="wave-steps">
+      <li style="--x:13%;--h:52%"><span class="ws-n">step 1</span><span class="ws-t">Discovery &amp; Analysis</span></li>
+      <li style="--x:30%;--h:72%"><span class="ws-n">step 2</span><span class="ws-t">Architecture &amp; UX</span></li>
+      <li style="--x:52%;--h:94%"><span class="ws-n">step 3</span><span class="ws-t">Build &amp; AI Integration</span></li>
+      <li style="--x:76%;--h:74%"><span class="ws-n">step 4</span><span class="ws-t">Launch &amp; Support</span></li>
+    </ol>
   </div>
 </section>
 
 <!-- ═══ REVIEWS ═══ -->
-<section id="reviews" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
-  <div style="max-width:1060px;margin:0 auto;">
-    <div class="section-label">04 / Reviews</div>
-    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3.5rem;">
+<section id="reviews" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 0;overflow:hidden;">
+  <div style="max-width:1060px;margin:0 auto;padding:0 2rem;">
+    <div class="section-label">05 / Reviews</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem;">
       <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;">What clients say.</h2>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.6);">5.0★ from every client</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,.65);">5.0★ on every Fiverr review · clients in 10 countries</span>
     </div>
+  </div>
+  <!-- Video testimonials -->
+  <div class="vt-stage">
+    <button type="button" class="vt vt-portrait" data-src="testimonials/client-1.mp4" aria-label="Play client video testimonial, 46 seconds">
+      <video src="testimonials/client-1.mp4" poster="testimonials/client-1.jpg" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>
+      <span class="vt-shade" aria-hidden="true"></span>
+      <span class="vt-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="vt-meta"><span class="vt-tag">● Client video · 0:46</span><span class="vt-q">“approximately a week, which is really impressive.”</span></span>
+    </button>
+    <button type="button" class="vt vt-wide" data-src="testimonials/client-2.mp4" aria-label="Play client video testimonial from a paid media analyst, 1 minute 9 seconds">
+      <video src="testimonials/client-2.mp4" poster="testimonials/client-2.jpg" muted playsinline loop preload="none" tabindex="-1" aria-hidden="true"></video>
+      <span class="vt-shade" aria-hidden="true"></span>
+      <span class="vt-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+      <span class="vt-meta"><span class="vt-tag">● Paid Media Analyst · 1:09</span><span class="vt-q">“be able to get my first clients.”</span></span>
+    </button>
+  </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
-
-      <div class="card" style="padding:1.75rem;">
-        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Mohammad built a fully customised WhatsApp chatbot system for me with server and even helped me set up. I highly recommend him!"</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
-          <div style="font-size:13px;font-weight:500;">gautammalik209</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Italy 🇮🇹</div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:1.75rem;">
-        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Mohammed is a very hard worker. I asked him to revisit details and he did exactly as I asked. He is a great developer!"</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
-          <div style="font-size:13px;font-weight:500;">lovelylj</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">United States 🇺🇸</div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:1.75rem;">
-        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Second time working with Mohammed, excellent job again. Understood requirements clearly and delivered exactly what I wanted."</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
-          <div style="font-size:13px;font-weight:500;">anum_danial</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:1.75rem;">
-        <div style="color:#e8ff47;font-size:13px;letter-spacing:2px;margin-bottom:1.1rem;">★★★★★</div>
-        <p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.4rem;font-style:italic;">"Wonderful experience. Knowledgeable, hardworking, fast and delivers excellent work above and beyond expectations."</p>
-        <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05);padding-top:1rem;">
-          <div style="font-size:13px;font-weight:500;">babarali677</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);">Pakistan 🇵🇰</div>
-        </div>
-      </div>
-
-    </div>
+  <div class="rv-wall">
+      <div class="rv-row rv-l"><div class="rv-strip"><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammed delivered outstanding work on my chatbot project. He went beyond my expectations and ensured everything was implemented perfectly. Highly professional and strongly recommended!</blockquote><figcaption><span class="rv-av" aria-hidden="true">A</span><span class="rv-who"><strong>anum_danial</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>I worked with bilal on many projects. He's good and professional like always, understand the work, clear communication and I start getting sales within few days of launch and now my products are in Etsy Pick and bestsellers. I would definitely recommend him to anyone who is looking for a professional</blockquote><figcaption><span class="rv-av" aria-hidden="true">D</span><span class="rv-who"><strong>douty98</strong><span><b>AU</b>Australia</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>He was a pleasure to work with, he listed items on my etsy account and went above and beyond by providing a logo and banner. The items he chose for my shop look really good quality and he provided reliable suppliers. It's too early to tell if these will convert into sales but I believe they will, so far so good.</blockquote><figcaption><span class="rv-av" aria-hidden="true">S</span><span class="rv-who"><strong>shinijames</strong><span><b>GB</b>United Kingdom</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammad did i really good job, He built a fully customised WhatsApp chatbot system for me with server and even helped me set up. I highly recommend him for project like these.</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>gautammalik209</strong><span><b>IT</b>Italy</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Knows the job from start to finish, very professional, responds quickly, did an amazing job, thank you, highly recommend</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>getinetmouch</strong><span><b>IL</b>Israel</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Bilal is great to work with and his expertise is outstanding. We highly recommend his services.</blockquote><figcaption><span class="rv-av" aria-hidden="true">D</span><span class="rv-who"><strong>deannak</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>thank you so much, excellent service</blockquote><figcaption><span class="rv-av" aria-hidden="true">R</span><span class="rv-who"><strong>redabellaouchii</strong><span><b>MA</b>Morocco</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Great service will definitely be coming back.</blockquote><figcaption><span class="rv-av" aria-hidden="true">R</span><span class="rv-who"><strong>robinexde</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Good job good job</blockquote><figcaption><span class="rv-av" aria-hidden="true">W</span><span class="rv-who"><strong>wuliewen280</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammed delivered outstanding work on my chatbot project. He went beyond my expectations and ensured everything was implemented perfectly. Highly professional and strongly recommended!</blockquote><figcaption><span class="rv-av" aria-hidden="true">A</span><span class="rv-who"><strong>anum_danial</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>I worked with bilal on many projects. He's good and professional like always, understand the work, clear communication and I start getting sales within few days of launch and now my products are in Etsy Pick and bestsellers. I would definitely recommend him to anyone who is looking for a professional</blockquote><figcaption><span class="rv-av" aria-hidden="true">D</span><span class="rv-who"><strong>douty98</strong><span><b>AU</b>Australia</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>He was a pleasure to work with, he listed items on my etsy account and went above and beyond by providing a logo and banner. The items he chose for my shop look really good quality and he provided reliable suppliers. It's too early to tell if these will convert into sales but I believe they will, so far so good.</blockquote><figcaption><span class="rv-av" aria-hidden="true">S</span><span class="rv-who"><strong>shinijames</strong><span><b>GB</b>United Kingdom</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammad did i really good job, He built a fully customised WhatsApp chatbot system for me with server and even helped me set up. I highly recommend him for project like these.</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>gautammalik209</strong><span><b>IT</b>Italy</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Knows the job from start to finish, very professional, responds quickly, did an amazing job, thank you, highly recommend</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>getinetmouch</strong><span><b>IL</b>Israel</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Bilal is great to work with and his expertise is outstanding. We highly recommend his services.</blockquote><figcaption><span class="rv-av" aria-hidden="true">D</span><span class="rv-who"><strong>deannak</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>thank you so much, excellent service</blockquote><figcaption><span class="rv-av" aria-hidden="true">R</span><span class="rv-who"><strong>redabellaouchii</strong><span><b>MA</b>Morocco</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Great service will definitely be coming back.</blockquote><figcaption><span class="rv-av" aria-hidden="true">R</span><span class="rv-who"><strong>robinexde</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Good job good job</blockquote><figcaption><span class="rv-av" aria-hidden="true">W</span><span class="rv-who"><strong>wuliewen280</strong><span><b>US</b>United States</span></span></figcaption></figure></div></div>
+      <div class="rv-row rv-r"><div class="rv-strip"><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>This guy is really the one you need if you want Llm powered apps and chatbots! He went above and beyond to deliver the requirements .. set up the environment, explained how to fix the errors, and was very responsive and punctual. Highly recommended!</blockquote><figcaption><span class="rv-av" aria-hidden="true">J</span><span class="rv-who"><strong>jocodepal</strong><span><b>AE</b>United Arab Emirates</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammed is a very hard worker and I enjoy working with him. This project has taken a bit longer than we planned because I am an expert at user experience within design components. As such I asked him to revisit details and he did exactly as I asked. I am super grateful for him. He is a great developer. Thanks!</blockquote><figcaption><span class="rv-av" aria-hidden="true">L</span><span class="rv-who"><strong>lovelylj</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Excellent work! Muhammad Bilal was very helpful and responsive. Highly recommend!</blockquote><figcaption><span class="rv-av" aria-hidden="true">C</span><span class="rv-who"><strong>chamodsivantha</strong><span><b>CA</b>Canada</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>I wanted to take a moment to share how much I truly enjoyed working with him. His work went above and beyond our expectations, and the value he provided was exceptional. I also genuinely appreciated the opportunity to learn from him — it has helped me grow both personally and professionally as I continue working toward greater success. We are extremely grateful, and we look forward to partnering again in the future. Thank you once again for the outstanding experience.</blockquote><figcaption><span class="rv-av" aria-hidden="true">J</span><span class="rv-who"><strong>jewrine07</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Hi hired Mohammed to build a chatbot for my e-commerce, and he did a good job. There was back-and-forth redoing and fixing the bugs, but he was committed to getting it done well. I will recommend him.</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>gillmore783</strong><span><b>GH</b>Ghana</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>A wonderful experience working with him. He is knowledgeable, hardworking, fast and delivers excellent work above and beyond expectations.</blockquote><figcaption><span class="rv-av" aria-hidden="true">B</span><span class="rv-who"><strong>babarali677</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>5 out of 5 based on communication and knowledge Bilal possesses. However, it's a little early to say if products are going to add value to my business. If you see another review from my side, then it will definitely work, so I will keep my hopes high and give Bilal strategy and product a try.</blockquote><figcaption><span class="rv-av" aria-hidden="true">Z</span><span class="rv-who"><strong>zeeahmed85</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>This is my second time working with Mohammed, and once again he did an excellent job. He understood my requirements clearly and delivered exactly what I wanted.</blockquote><figcaption><span class="rv-av" aria-hidden="true">A</span><span class="rv-who"><strong>anum_danial</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>This guy is really the one you need if you want Llm powered apps and chatbots! He went above and beyond to deliver the requirements .. set up the environment, explained how to fix the errors, and was very responsive and punctual. Highly recommended!</blockquote><figcaption><span class="rv-av" aria-hidden="true">J</span><span class="rv-who"><strong>jocodepal</strong><span><b>AE</b>United Arab Emirates</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Mohammed is a very hard worker and I enjoy working with him. This project has taken a bit longer than we planned because I am an expert at user experience within design components. As such I asked him to revisit details and he did exactly as I asked. I am super grateful for him. He is a great developer. Thanks!</blockquote><figcaption><span class="rv-av" aria-hidden="true">L</span><span class="rv-who"><strong>lovelylj</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Excellent work! Muhammad Bilal was very helpful and responsive. Highly recommend!</blockquote><figcaption><span class="rv-av" aria-hidden="true">C</span><span class="rv-who"><strong>chamodsivantha</strong><span><b>CA</b>Canada</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>I wanted to take a moment to share how much I truly enjoyed working with him. His work went above and beyond our expectations, and the value he provided was exceptional. I also genuinely appreciated the opportunity to learn from him — it has helped me grow both personally and professionally as I continue working toward greater success. We are extremely grateful, and we look forward to partnering again in the future. Thank you once again for the outstanding experience.</blockquote><figcaption><span class="rv-av" aria-hidden="true">J</span><span class="rv-who"><strong>jewrine07</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>Hi hired Mohammed to build a chatbot for my e-commerce, and he did a good job. There was back-and-forth redoing and fixing the bugs, but he was committed to getting it done well. I will recommend him.</blockquote><figcaption><span class="rv-av" aria-hidden="true">G</span><span class="rv-who"><strong>gillmore783</strong><span><b>GH</b>Ghana</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>A wonderful experience working with him. He is knowledgeable, hardworking, fast and delivers excellent work above and beyond expectations.</blockquote><figcaption><span class="rv-av" aria-hidden="true">B</span><span class="rv-who"><strong>babarali677</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>5 out of 5 based on communication and knowledge Bilal possesses. However, it's a little early to say if products are going to add value to my business. If you see another review from my side, then it will definitely work, so I will keep my hopes high and give Bilal strategy and product a try.</blockquote><figcaption><span class="rv-av" aria-hidden="true">Z</span><span class="rv-who"><strong>zeeahmed85</strong><span><b>US</b>United States</span></span></figcaption></figure><figure class="card rv-card" aria-hidden="true"><div class="rv-stars" aria-label="5 out of 5 stars">★★★★★<span>5.0</span></div><blockquote>This is my second time working with Mohammed, and once again he did an excellent job. He understood my requirements clearly and delivered exactly what I wanted.</blockquote><figcaption><span class="rv-av" aria-hidden="true">A</span><span class="rv-who"><strong>anum_danial</strong><span><b>PK</b>Pakistan</span></span></figcaption></figure></div></div>
   </div>
 </section>
 
 <!-- ═══ CONTACT ═══ -->
 <section id="contact" style="border-top:1px solid rgba(255,255,255,.06);padding:7rem 2rem;">
   <div style="max-width:900px;margin:0 auto;">
-    <div class="section-label">05 / Contact</div>
+    <div class="section-label">06 / Contact</div>
     <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-1.5px;margin-bottom:.75rem;">Let's work together.</h2>
     <p style="font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:3.5rem;font-weight:300;">Open to full-time roles, freelance projects, and long-term collaborations.</p>
 
     <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1.2fr;gap:3rem;align-items:start;">
       <div>
-        <div style="display:flex;align-items:center;gap:9px;padding:14px 18px;background:#111114;border:1px solid rgba(34,197,94,.15);border-radius:10px;margin-bottom:2rem;">
+        <div style="display:flex;align-items:center;gap:9px;padding:14px 18px;background:#151029;border:1px solid rgba(34,197,94,.15);border-radius:10px;margin-bottom:2rem;">
           <div style="width:8px;height:8px;background:#22c55e;border-radius:50%;animation:pulse 2.5s ease-in-out infinite;flex-shrink:0;"></div>
           <div><div style="font-size:13px;font-weight:500;">Currently available</div><div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:2px;">Remote & Saudi Arabia</div></div>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aqibbilal188@gmail.com&su=Project%20Inquiry" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aqibbilal188@gmail.com&su=Project%20Inquiry" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#151029;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(114,91,250,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
             <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">EMAIL</div><div style="font-size:13px;color:rgba(255,255,255,.7);">aqibbilal188@gmail.com</div></div>
           </a>
-          <a href="tel:+966536849821" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+966536849821" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#151029;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(114,91,250,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">SAUDI ARABIA 🇸🇦</div><div style="font-size:13px;color:rgba(255,255,255,.7);">+966 53 684 9821</div></div>
           </a>
-          <a href="tel:+918106471131" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#111114;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(232,255,71,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
-            <svg width="16" height="16" fill="none" stroke="#e8ff47" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+918106471131" style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:#151029;border:1px solid rgba(255,255,255,.07);border-radius:10px;text-decoration:none;color:inherit;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(114,91,250,.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,.07)'">
+            <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.28h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.08-1.08a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <div><div style="font-size:12px;color:rgba(255,255,255,.3);font-family:'JetBrains Mono',monospace;margin-bottom:2px;">INDIA 🇮🇳</div><div style="font-size:13px;color:rgba(255,255,255,.7);">+91 81064 71131</div></div>
           </a>
         </div>
@@ -744,15 +1051,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         <form id="cf">
           <div style="margin-bottom:1.1rem;">
             <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">NAME</label>
-            <input type="text" required placeholder="Your name" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
+            <input type="text" required placeholder="Your name" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(114,91,250,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
           </div>
           <div style="margin-bottom:1.1rem;">
             <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">EMAIL</label>
-            <input type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
+            <input type="email" required placeholder="your@email.com" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(114,91,250,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'">
           </div>
           <div style="margin-bottom:1.5rem;">
             <label style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:2px;margin-bottom:7px;">MESSAGE</label>
-            <textarea required placeholder="Tell me about your project..." rows="4" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;resize:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(232,255,71,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'"></textarea>
+            <textarea required placeholder="Tell me about your project..." rows="4" style="width:100%;padding:11px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#f4f4f5;font-size:13px;outline:none;resize:none;font-family:'Inter',sans-serif;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(114,91,250,.4)'" onblur="this.style.borderColor='rgba(255,255,255,.08)'"></textarea>
           </div>
           <button type="submit" id="sb" class="btn-primary" style="width:100%;justify-content:center;">Send message</button>
         </form>
@@ -780,6 +1087,16 @@ window.closeV=()=>{const v=document.getElementById('vp');v.pause();v.src='';docu
 document.getElementById('vmodal').addEventListener('click',e=>{if(e.target===document.getElementById('vmodal'))closeV();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('vmodal').classList.contains('open'))closeV();});
 
+// Video testimonials: silent preview on hover, full video with sound on click
+document.querySelectorAll('.vt').forEach(b=>{
+  const v=b.querySelector('video');
+  b.addEventListener('click',()=>{v.pause();openV(b.dataset.src,b);});
+  if(!reduceMotion&&matchMedia('(hover: hover)').matches){
+    b.addEventListener('mouseenter',()=>{v.play().catch(()=>{});});
+    b.addEventListener('mouseleave',()=>{v.pause();});
+  }
+});
+
 /* ── THREE.JS: subtle particle background ── */
 if(typeof THREE!=='undefined'&&!reduceMotion){
   const hero=document.querySelector('section');
@@ -802,7 +1119,7 @@ if(typeof THREE!=='undefined'&&!reduceMotion){
   const n=1800, pos=new Float32Array(n*3);
   for(let i=0;i<n*3;i++) pos[i]=(Math.random()-.5)*22;
   geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0xe8ff47,size:.025,transparent:true,opacity:.28})));
+  scene.add(new THREE.Points(geo,new THREE.PointsMaterial({color:0x725bfa,size:.025,transparent:true,opacity:.28})));
 
   let mx=0,my=0,heroVisible=true;
   document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.3;my=-(e.clientY/innerHeight-.5)*.2;});
@@ -842,17 +1159,153 @@ const obs=new IntersectionObserver(en=>{
 },{threshold:.3});
 obs.observe(document.getElementById('s1').parentElement.parentElement);
 
-/* ── SCROLL-REVEAL ── */
-const io=new IntersectionObserver(en=>{
-  en.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';io.unobserve(e.target);}});
-},{threshold:.1});
-if(!reduceMotion) document.querySelectorAll('.card,[id]').forEach(el=>{
-  if(el.tagName!=='SECTION'&&!el.querySelector('canvas')&&!el.closest('#vmodal,#navwrap,#mmenu')&&!/^(s[134]|tw|tw-caret)$/.test(el.id)){
-    el.style.opacity='0';el.style.transform='translateY(20px)';
-    el.style.transition='opacity .6s ease, transform .6s ease';
-    io.observe(el);
+/* ── 3D SCROLL-REVEAL ── */
+// Headings, intro text and cards tip forward into place as they scroll in; siblings stagger.
+if(!reduceMotion){
+  const targets=document.querySelectorAll('.about-grid > *, .stats-grid > div, .contact-grid > *');
+  const io=new IntersectionObserver(en=>{
+    en.forEach(e=>{if(e.isIntersecting){
+      const el=e.target, sibs=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));
+      el.style.setProperty('--rd',Math.min(sibs.indexOf(el)%3,2)*90+'ms');
+      el.classList.add('rv-in'); io.unobserve(el);
+      // hand transform back to the hover tilt once the reveal finishes
+      setTimeout(()=>{el.classList.remove('rv','rv-in');},1300);
+    }});
+  },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(el=>{ if(el.closest('#skills .skills-track')) return; el.classList.add('rv'); io.observe(el); });
+}
+
+/* ── 3D CARD TILT ── */
+if(!reduceMotion&&matchMedia('(hover: hover) and (pointer: fine)').matches){
+  document.querySelectorAll('.card').forEach(c=>{
+    if(c.closest('.hp-track')) return;
+    c.classList.add('tilt');
+    c.addEventListener('mousemove',e=>{
+      const r=c.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+      c.style.setProperty('--ry',((px-.5)*7).toFixed(2)+'deg');
+      c.style.setProperty('--rx',((.5-py)*7).toFixed(2)+'deg');
+      c.style.setProperty('--mx',px*100+'%'); c.style.setProperty('--my',py*100+'%');
+    });
+    c.addEventListener('mouseleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');});
+  });
+}
+
+/* ── PINNED TRACKS: vertical scroll drives a 3D horizontal track (desktop) ── */
+const pinTracks=[...document.querySelectorAll('.hpin')].map(pin=>{
+  const track=pin.querySelector('.hp-track'), bar=pin.querySelector('.hp-progress span'), vp=pin.querySelector('.hp-viewport');
+  const cards=[...track.children], isProj=track.classList.contains('proj-track');
+  const t={pin,track,bar,cards,overflow:0,active:false,current:null};
+  t.setActive=c=>{ if(c===t.current) return; if(t.current) t.current.classList.remove('is-active'); t.current=c; if(c) c.classList.add('is-active'); };
+  t.layout=()=>{
+    t.active=!reduceMotion&&innerWidth>=960&&innerHeight>=600;
+    pin.classList.toggle('pinned',t.active);
+    if(!t.active){ pin.style.height=''; track.style.transform=''; cards.forEach(c=>{c.style.transform='';c.style.opacity='';}); return; }
+    t.overflow=Math.max(0,track.scrollWidth-innerWidth);
+    pin.style.height=(innerHeight+t.overflow*1.1)+'px';
+    t.update();
+  };
+  t.update=()=>{
+    if(!t.active) return;
+    const r=pin.getBoundingClientRect(), total=pin.offsetHeight-innerHeight;
+    const p=Math.min(1,Math.max(0,-r.top/total));
+    track.style.transform='translate3d('+(-p*t.overflow)+'px,0,0)';
+    bar.style.transform='scaleX('+p+')';
+    const mid=innerWidth/2; let best=null,bestD=9;
+    cards.forEach(c=>{
+      const cr=c.getBoundingClientRect(), d=(cr.left+cr.width/2-mid)/mid, a=Math.max(-1,Math.min(1,d)), ad=Math.abs(a);
+      if(Math.abs(d)<bestD){bestD=Math.abs(d);best=c;}
+      // centre card pops forward and grows; neighbours swing away
+      const lift=Math.max(0,1-ad*2.2)*(isProj?1:.8);
+      c.style.transform='rotateY('+(-a*24).toFixed(2)+'deg) translateZ('+(-ad*110+lift*40).toFixed(1)+'px) scale('+(1+lift*.06).toFixed(3)+')';
+      c.style.opacity=Math.max(0,1-Math.max(0,ad-.72)*1.5).toFixed(3);
+    });
+    t.setActive(best);
+  };
+  // Mobile / no-pin: native swipe; progress bar and active card follow it
+  vp.addEventListener('scroll',()=>{
+    if(t.active) return;
+    const m=vp.scrollWidth-vp.clientWidth; bar.style.transform='scaleX('+(m?vp.scrollLeft/m:0)+')';
+  },{passive:true});
+  {
+    const io=new IntersectionObserver(en=>{ if(t.active) return; en.forEach(e=>{ if(e.isIntersecting) t.setActive(e.target); }); },{root:vp,threshold:.75});
+    cards.forEach(c=>io.observe(c));
   }
+  return t;
 });
+
+/* ── SCROLL-LINKED 3D: hero tips away, headings rise out of the page ── */
+const heroInner=document.querySelector('.hero-inner');
+const heads=[...document.querySelectorAll('section:not(:first-of-type) .section-label, section:not(:first-of-type) h2')];
+heads.forEach(el=>{el.style.transformOrigin='50% 100%';el.style.willChange='transform, opacity';});
+function scroll3d(){
+  pinTracks.forEach(t=>t.update());
+  if(reduceMotion) return;
+  const vh=innerHeight;
+  const hp=Math.min(1,scrollY/vh);
+  if(heroInner) heroInner.style.transform=hp>0?'perspective(1200px) translateY('+(-hp*60)+'px) rotateX('+(hp*16)+'deg) scale('+(1-hp*.08)+')':'';
+  if(heroInner) heroInner.style.opacity=(1-hp*.85).toFixed(3);
+  heads.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top>vh*1.2||r.bottom<-vh*.2) return;
+    const t=Math.min(1,Math.max(0,(vh-r.top)/(vh*.45)));
+    el.style.transform=t<1?'perspective(700px) rotateX('+((1-t)*55).toFixed(2)+'deg) translateY('+((1-t)*30).toFixed(1)+'px)':'none';
+    el.style.opacity=(.15+t*.85).toFixed(3);
+  });
+}
+let ticking3d=false;
+addEventListener('scroll',()=>{ if(!ticking3d){ticking3d=true;requestAnimationFrame(()=>{scroll3d();ticking3d=false;});} },{passive:true});
+addEventListener('resize',()=>{pinTracks.forEach(t=>t.layout());scroll3d();});
+pinTracks.forEach(t=>t.layout());
+scroll3d();
+
+/* ── PROCESS WAVEFORM ── */
+(function(){
+  const wave=document.getElementById('wave'), stage=document.getElementById('waveStage');
+  const steps=[...wave.querySelectorAll('.wave-steps li')].map(li=>({
+    x:parseFloat(li.style.getPropertyValue('--x'))/100, h:parseFloat(li.style.getPropertyValue('--h'))/100
+  }));
+  // Seeded noise so the shape is the same on every load
+  let seed=7; const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  let bars=[];
+  function build(){
+    stage.innerHTML=''; seed=7;
+    const mobile=innerWidth<=760, n=Math.max(40,Math.floor(stage.offsetWidth/(mobile?7:9)));
+    const peakIdx=steps.map(s=>Math.round(s.x*(n-1)));
+    bars=[];
+    for(let i=0;i<n;i++){
+      const x=i/(n-1);
+      let v=.07+rnd()*.12;
+      steps.forEach(s=>{ v+=(s.h-.12)*Math.exp(-Math.pow((x-s.x)/.05,2))*(.7+rnd()*.35); });
+      const b=document.createElement('div');
+      b.className='wave-bar';
+      const p=peakIdx.indexOf(i);
+      if(p>-1&&!mobile){ b.classList.add('peak'); v=steps[p].h+.14; }
+      b.style.setProperty('--bh',Math.min(v,1)*100+'%');
+      b.style.setProperty('--d',(-(i%23)*.16)+'s');
+      b.style.transitionDelay=(reduceMotion?0:i*4)+'ms';
+      stage.appendChild(b); bars.push(b);
+    }
+  }
+  build();
+  let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{build();if(wave.classList.contains('in'))bars.forEach(b=>b.style.transitionDelay='0ms');},200);});
+
+  if(reduceMotion){ wave.classList.add('in'); return; }
+  new IntersectionObserver((en,o)=>{ if(en[0].isIntersecting){
+    wave.classList.add('in'); o.disconnect();
+    setTimeout(()=>{ bars.forEach(b=>b.style.transitionDelay='0ms'); wave.classList.add('idle'); },1600);
+  }},{threshold:.35}).observe(wave);
+
+  // Bars lift around the cursor
+  wave.addEventListener('mousemove',e=>{
+    if(!wave.classList.contains('idle')) return;
+    bars.forEach(b=>{
+      const r=b.getBoundingClientRect(), d=Math.abs(e.clientX-(r.left+r.width/2)), f=Math.max(0,1-d/90);
+      if(f>0){ b.classList.add('hot'); b.style.setProperty('--s',(1+f*.45).toFixed(3)); }
+      else if(b.classList.contains('hot')){ b.classList.remove('hot'); b.style.removeProperty('--s'); }
+    });
+  });
+  wave.addEventListener('mouseleave',()=>bars.forEach(b=>{b.classList.remove('hot');b.style.removeProperty('--s');}));
+})();
 
 /* ── NAV ── */
 const navwrap=document.getElementById('navwrap');
@@ -874,7 +1327,7 @@ const spy=new IntersectionObserver(en=>{
     moveInd(current);
   }});
 },{rootMargin:'-45% 0px -50% 0px'});
-['about','skills','projects','reviews','contact'].forEach(id=>spy.observe(document.getElementById(id)));
+['about','skills','projects','process','reviews','contact'].forEach(id=>spy.observe(document.getElementById(id)));
 window.addEventListener('resize',()=>moveInd(current));
 
 // Riyadh local time
@@ -897,7 +1350,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mmenu.classList.con
 
 /* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+  a.addEventListener('click',e=>{const href=a.getAttribute('href');if(href==='#'){e.preventDefault();scrollTo({top:0,behavior:'smooth'});return;}const t=document.querySelector(href);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
 });
 
 /* ── FORM ── */
@@ -905,7 +1358,7 @@ document.getElementById('cf').addEventListener('submit',function(e){
   e.preventDefault();
   const b=document.getElementById('sb');
   b.textContent='Message sent ✓'; b.style.background='#22c55e'; b.style.color='#fff';
-  setTimeout(()=>{b.textContent='Send message';b.style.background='#e8ff47';b.style.color='#09090b';this.reset();},3000);
+  setTimeout(()=>{b.textContent='Send message';b.style.background='var(--accent)';b.style.color='#0a011a';this.reset();},3000);
 });
 
 })();
