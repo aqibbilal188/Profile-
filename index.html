@@ -294,6 +294,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .rv-r .rv-strip { animation-direction: reverse; animation-duration: 80s; }
 .rv-wall:hover .rv-strip, .rv-wall:focus-within .rv-strip { animation-play-state: paused; }
 @keyframes rvScroll { to { transform: translateX(-50%); } }
+.rv-row.rv-extra { display: none; }
+@media (max-width: 720px) { .rv-row.rv-extra { display: block; } }
 .rv-card { width: 360px; padding: 1.5rem 1.6rem; margin: 0; background: linear-gradient(165deg, #1a1431, #110b24); }
 .rv-stars { color: #ffc94d; font-size: 14px; letter-spacing: 3px; margin-bottom: .9rem; display: flex; align-items: center; gap: 8px; }
 .rv-stars span { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0; color: rgba(255,255,255,.7); }
@@ -305,9 +307,24 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .rv-who strong { font-size: 14px; font-weight: 600; color: #f4f4f5; }
 .rv-who > span { font-size: 12.5px; color: rgba(255,255,255,.62); display: flex; align-items: center; gap: 7px; }
 .rv-who b { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; padding: 1px 5px; border-radius: 4px; background: rgba(114,91,250,.18); color: var(--accent-text); }
+/* Phones: a tilted 3D wall with three rows of reviews sliding sideways in alternate directions */
 @media (max-width: 720px) {
-  .rv-card { width: 82vw; max-width: 330px; }
+  .rv-wall {
+    gap: 14px; padding: 1rem 0;
+    transform: perspective(1000px) rotateX(14deg) rotateZ(-6deg) scale(1.12); transform-origin: 50% 50%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
   .rv-row, .rv-row.rv-r { transform: none; }
+  .rv-strip { padding: 0; animation-duration: 60s; }
+  .rv-r .rv-strip { animation-duration: 70s; }
+  .rv-row.rv-extra .rv-strip { animation-direction: normal; animation-duration: 80s; }
+  .rv-row.rv-extra { opacity: .5; }
+  /* equal-height cards in each row, so no gaps open up between rows */
+  .rv-strip { align-items: stretch; }
+  .rv-card { width: 74vw; max-width: 300px; padding: 1.2rem 1.25rem; display: flex; flex-direction: column; }
+  .rv-card blockquote { font-size: 14px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+  .rv-card figcaption { margin-top: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .rv-row, .rv-row.rv-r { transform: none; overflow-x: auto; }
@@ -1095,6 +1112,16 @@ window.openV=(src,trigger)=>{lastTrigger=trigger||null;const v=document.getEleme
 window.closeV=()=>{const v=document.getElementById('vp');v.pause();v.src='';document.getElementById('vmodal').classList.remove('open');if(lastTrigger)lastTrigger.focus();};
 document.getElementById('vmodal').addEventListener('click',e=>{if(e.target===document.getElementById('vmodal'))closeV();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('vmodal').classList.contains('open'))closeV();});
+
+// Reviews on phones: a third row so the tilted wall stays filled
+(function(){
+  const wall=document.querySelector('.rv-wall'); if(!wall) return;
+  const ra=wall.querySelector('.rv-row');
+  const extra=ra.cloneNode(true);
+  extra.classList.add('rv-extra'); extra.setAttribute('aria-hidden','true');
+  extra.querySelector('.rv-strip').style.animationDelay='-35s';
+  wall.appendChild(extra);
+})();
 
 // Video testimonials: silent preview on hover, full video with sound on click
 document.querySelectorAll('.vt').forEach(b=>{
